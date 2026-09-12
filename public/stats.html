@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Digger 3D — plays</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 28px 20px 40px;
+        background: #000;
+        color: #bbb;
+        font: 14px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+      main { max-width: 640px; margin: 0 auto; }
+      h1 { margin: 0 0 4px; font-size: 18px; color: #eee; font-weight: 600; }
+      p.sub { margin: 0 0 22px; color: #777; }
+      table { width: 100%; border-collapse: collapse; }
+      th, td { padding: 5px 8px; text-align: right; border-bottom: 1px solid #1e1e1e; }
+      th { color: #888; font-weight: 400; }
+      th:first-child, td:first-child { text-align: left; }
+      td.n { color: #eee; }
+      tfoot td { border-bottom: none; color: #888; padding-top: 12px; }
+      a { color: #6cf; }
+      .empty { color: #666; padding: 24px 0; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Digger 3D — plays</h1>
+      <p class="sub">
+        People who opened the game, those who started one, and how many games — per day (UTC).
+        One person counts once a day; nothing else is stored. <a href="/">Back to the game</a>
+      </p>
+      <div id="out" class="empty">loading…</div>
+    </main>
+    <script type="module">
+      const out = document.getElementById("out");
+      const cell = (v) => `<td class="n">${v ?? 0}</td>`;
+      try {
+        const r = await fetch("/api/stats?days=60");
+        if (!r.ok) throw new Error(String(r.status));
+        const { days = [], totalGames = 0 } = await r.json();
+        if (days.length === 0) {
+          out.textContent = "nothing counted yet";
+        } else {
+          out.className = "";
+          out.innerHTML = `<table>
+            <thead><tr><th>day</th><th>people</th><th>played</th><th>games</th><th>visits</th></tr></thead>
+            <tbody>${days
+              .map(
+                (d) =>
+                  `<tr><td>${d.day}</td>${cell(d.people)}${cell(d.players)}${cell(d.games)}${cell(d.visits)}</tr>`,
+              )
+              .join("")}</tbody>
+            <tfoot><tr><td colspan="5">${totalGames} games in the last ${days.length} day(s)</td></tr></tfoot>
+          </table>`;
+        }
+      } catch {
+        out.textContent = "no counter here (this build has no /api/stats)";
+      }
+    </script>
+  </body>
+</html>
