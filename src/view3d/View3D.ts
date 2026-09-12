@@ -54,6 +54,10 @@ const ACTOR_WIDTH = 12; // model thickness across the trench
 const EARTH_TILE = { w: 20, h: 4 };
 /** Slab-local "up" (the surface normal). */
 const UP = new THREE.Vector3(0, 1, 0);
+/** How far a buried object leans out of the wall of the tunnel beside it, and
+ *  the height in the wall it does that at (the driver's eye is at EYE). */
+const WALL_OUT = 5;
+const WALL_EYE = 6;
 /** Camera elevations between which a monster leans back, and how far it leans. */
 const LEAN_FROM = 0.55;
 const LEAN_TO = 1.15;
@@ -356,6 +360,54 @@ export class View3D {
   }
 
   /**
+   * Orientation of a flat, face-on object (emerald, bag, gold): it lies in the
+   * earth face-up for a camera looking down, and turns to face the driver who
+   * sees it from a tunnel. In between it swings smoothly, so the artwork is
+   * readable from everywhere.
+   */
+  private faceViewer(at: THREE.Vector3): THREE.Quaternion {
+    const eye = this.slab.inner.worldToLocal(this.camera.position.clone()).sub(at);
+    const elevation = Math.atan2(eye.y, Math.hypot(eye.x, eye.z));
+    const t = clamp01((elevation - LEAN_FROM) / (LEAN_TO - LEAN_FROM));
+    const lying = t * t * (3 - 2 * t); // 1 = flat on its back, 0 = standing up
+    // face-up it keeps the orientation of the 2D sprite; standing up it turns to the viewer
+    const yaw = Math.atan2(eye.x, eye.z) * (1 - lying);
+    return new THREE.Quaternion().setFromEuler(new THREE.Euler(-lying * (Math.PI / 2), yaw, 0, "YXZ"));
+  }
+
+  /**
+   * Which way a buried object should lean out of the earth: towards the tunnel
+   * beside it, if there is one. Without this an emerald in the wall is hidden
+   * inside the slab and the driver eats it without ever seeing it.
+   */
+  private wallOpening(view: GameView, x: number, y: number, w: number, h: number): THREE.Vector3 | null {
+    const share = (dx: number, dy: number): number => {
+      let dug = 0;
+      for (let i = 0; i <= 8; i++) {
+        const u = dx === 0 ? x + (w * i) / 8 : dx < 0 ? x - 4 : x + w + 4;
+        const v = dy === 0 ? y + (h * i) / 8 : dy < 0 ? y - 4 : y + h + 4;
+        if (Slab.dug(view.tunnels, Math.round(u), Math.round(v))) dug++;
+      }
+      return dug / 9;
+    };
+    let best: THREE.Vector3 | null = null;
+    let bestShare = 0.35; // a real opening, not a stray dug pixel
+    for (const [dx, dy] of [
+      [-1, 0],
+      [1, 0],
+      [0, -1],
+      [0, 1],
+    ] as const) {
+      const s = share(dx, dy);
+      if (s > bestShare) {
+        bestShare = s;
+        best = new THREE.Vector3(dx, 0, dy);
+      }
+    }
+    return best;
+  }
+
+  /**
    * How far a face-on model should lean back for the camera that is looking at
    * it: nothing while the camera is level with it (the cabin), almost flat once
    * the camera is overhead (the attract screen and the flyover).
@@ -432,9 +484,13 @@ export class View3D {
       mesh.position.copy(this.floorPoint(p.x, p.y, h));
       const wobble = b.wobbling ? Math.sin(view.frame * 1.7) * 0.25 : 0;
       if (exposure < 0.5 && !b.gold) {
-        // buried: lying in the earth face-up, so from above it reads like the 2D sprite
+        // buried: face-up in the earth from above, and leaning out of the wall of
+        // the tunnel beside it so it can be seen from the cabin as well
         mesh.position.z -= SPRITE_H / 2;
-        mesh.rotation.set(-Math.PI / 2, 0, wobble);
+        const out = this.wallOpening(view, Math.round(p.x), Math.round(p.y), SPRITE_W, SPRITE_H);
+        if (out) mesh.position.addScaledVector(out, WALL_OUT).setY(-TRENCH + WALL_EYE);
+        mesh.quaternion.copy(this.faceViewer(mesh.position));
+        mesh.rotateZ(wobble);
       } else {
         // dug out: standing in the trench
         mesh.rotation.set(0, Math.PI / 2, wobble);
@@ -445,8 +501,7 @@ export class View3D {
 
   private placeEmeralds(view: GameView): void {
     const m = new THREE.Matrix4();
-    // emeralds lie face-up in the earth, like the 2D sprite seen from above
-    const q = new THREE.Quaternion().setFromEuler(new THREE.Euler(-Math.PI / 2, 0, 0));
+    const scale = new THREE.Vector3(1, 1, 1);
     let n = 0;
     for (let i = 0; i < view.emeralds.length; i++) {
       if (!view.emeralds[i]) continue;
@@ -455,8 +510,15 @@ export class View3D {
       // where the original draws it: drawemerald(col*20+12, row*18+21), sprite 16x10
       const x = FIELD.x0 + col * 20;
       const y = FIELD.y0 + row * 18 + 3;
-      const h = this.embedHeight(this.exposure(view, x, y), 10);
-      m.compose(new THREE.Vector3(x + 8, -TRENCH + h, y + 5), q, new THREE.Vector3(1, 1, 1));
+      const exposure = this.exposure(view, x, y);
+      const pos = new THREE.Vector3(x + 8, -TRENCH + this.embedHeight(exposure, 10), y + 5);
+      // still in the earth: lean out of the wall of the tunnel beside it, so the
+      // driver catches sight of it before driving into it
+      if (exposure < 0.5) {
+        const out = this.wallOpening(view, x, y, 16, 10);
+        if (out) pos.addScaledVector(out, WALL_OUT).setY(-TRENCH + WALL_EYE);
+      }
+      m.compose(pos, this.faceViewer(pos), scale);
       this.emeralds.setMatrixAt(n++, m);
     }
     this.emeralds.count = n;
