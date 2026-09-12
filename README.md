@@ -75,17 +75,50 @@ live in the reference repository, so they need it checked out beside the project
 git clone https://github.com/sobomax/digger vendor/digger
 ```
 
+## Where it comes from
+
+**1983.** Digger was written by **Windmill Software** and sold as a copy-protected,
+bootable 5.25" floppy for the IBM PC. It needed a 4.77 MHz machine and a genuine
+CGA card, which is why it stopped working on later PCs. Its source code was never
+published, and the game was never released under any licence: it is Windmill's
+work, and it still is.
+
+**1998.** **Andrew Jenner** reverse-engineered the game into **Digger Remastered**,
+so that it plays and sounds the way the original did on hardware that no longer
+exists. He later described how that stands legally: Rob Sleath, the author of the
+original Digger, contacted him; Sleath no longer owns the copyright to Digger but
+kept the right to use the code for other products, considers Digger Remastered to
+be another such product, and granted Jenner the copyright to Digger Remastered —
+which Jenner licensed under the **GNU GPL**. Jenner kept Windmill's copyright
+messages in the game and credits them wherever he can.
+
+**Later.** **Maksym Sobolyev** ported that code to SDL for Linux, FreeBSD and
+Windows (and eventually WebAssembly), and **Michael Knigge** cleaned it up and
+packaged it for Windows. That tree carries several licences — GPL-2, 2-clause BSD,
+Beer-Ware, public domain — file by file.
+
+**Now.** Digger 3D continues that line. The game here is written from scratch in
+TypeScript, but everything it knows about how Digger behaves comes from the
+Remastered sources: they are the documentation of the original's rules and, in
+`tools/reference`, the oracle every frame of our simulation is compared against.
+So this project takes its licence and its descent from Digger Remastered and is
+**GPL-2.0-only** as well (see `LICENSE`).
+
+The 1983 program itself was used as the object of study and as the source of its
+own artwork: the sprites, the font, the title picture, the level maps, the tunes
+and the timing values are read straight out of it, so that what you see and hear
+is the 1983 game rather than a redrawing of it. That data belongs to Windmill
+Software; it is not ours to license, and their copyright line stays on the screen
+exactly where the original puts it.
+
 ## Author
 
 **Ilya Osipov** — [ilyaos.com](https://ilyaos.com)
 
-## Credits and licence
+## Credits
 
-Digger was created by **Windmill Software** in 1983 and is their work; this
-project only makes it run in a browser and adds the window into the cabin.
+Digger — **Windmill Software**, 1983.
+Digger Remastered — **Andrew Jenner**, with **Maksym Sobolyev** and
+**Michael Knigge** ([github.com/sobomax/digger](https://github.com/sobomax/digger)).
 
-The reverse engineering that made the rules knowable is **Digger Remastered** by
-Andrew Jenner and the later ports by Maksym Sobolyev and Michael Knigge; their
-sources are used here as a test oracle, never as game code.
-
-Licence: GPL-2.0-only.
+Licence: **GPL-2.0-only**.
