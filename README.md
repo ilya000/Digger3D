@@ -81,28 +81,37 @@ git clone https://github.com/sobomax/digger vendor/digger
 bootable 5.25" floppy for the IBM PC. It needed a 4.77 MHz machine and a genuine
 CGA card, which is why it stopped working on later PCs. Its source code was never
 published, and the game was never released under any licence: it is Windmill's
-work, and it still is.
+work, and it still is. The copy this project reads its artwork out of is the one
+kept at the [Internet Archive](https://archive.org/details/msdos_Digger_1983_1983)
+(`digger.com`, 57,856 bytes, sha256 `4585dad6…`, which `tools/extract` verifies
+before it reads a single byte).
 
 **1998.** **Andrew Jenner** reverse-engineered the game into **Digger Remastered**,
 so that it plays and sounds the way the original did on hardware that no longer
-exists. He later described how that stands legally: Rob Sleath, the author of the
-original Digger, contacted him; Sleath no longer owns the copyright to Digger but
-kept the right to use the code for other products, considers Digger Remastered to
-be another such product, and granted Jenner the copyright to Digger Remastered —
-which Jenner licensed under the **GNU GPL**. Jenner kept Windmill's copyright
-messages in the game and credits them wherever he can.
+exists. He set out where that stands legally in the game's own FAQ
+([`digger.txt`](https://github.com/sobomax/digger/blob/master/digger.txt), the
+answers to "Is this legal?" and "Where can I get the original version of
+Digger?"): Rob Sleath, the author of the original Digger, contacted him; Sleath no
+longer owns the copyright to Digger but kept the right to use the code for other
+products, considers Digger Remastered to be another such product, and granted
+Jenner the copyright to Digger Remastered — which Jenner licensed under the **GNU
+GPL**. Of the original games he himself distributes, Jenner writes that doing so
+is "strictly speaking, not legal", and that he keeps Windmill's copyright messages
+in the game and credits them wherever he can. More of that history, and of
+Windmill Software's, is on his site [digger.org](https://digger.org).
 
 **Later.** **Maksym Sobolyev** ported that code to SDL for Linux, FreeBSD and
 Windows (and eventually WebAssembly), and **Michael Knigge** cleaned it up and
-packaged it for Windows. That tree carries several licences — GPL-2, 2-clause BSD,
-Beer-Ware, public domain — file by file.
+packaged it for Windows. That tree —
+[github.com/sobomax/digger](https://github.com/sobomax/digger) — carries several
+licences file by file: GPL-2, 2-clause BSD, Beer-Ware, public domain.
 
 **Now.** Digger 3D continues that line. The game here is written from scratch in
 TypeScript, but everything it knows about how Digger behaves comes from the
 Remastered sources: they are the documentation of the original's rules and, in
 `tools/reference`, the oracle every frame of our simulation is compared against.
 So this project takes its licence and its descent from Digger Remastered and is
-**GPL-2.0-only** as well (see `LICENSE`).
+**GPL-2.0-only** as well (see [`LICENSE`](LICENSE)).
 
 The 1983 program itself was used as the object of study and as the source of its
 own artwork: the sprites, the font, the title picture, the level maps, the tunes
@@ -110,6 +119,17 @@ and the timing values are read straight out of it, so that what you see and hear
 is the 1983 game rather than a redrawing of it. That data belongs to Windmill
 Software; it is not ours to license, and their copyright line stays on the screen
 exactly where the original puts it.
+
+### Sources
+
+* Digger Remastered's FAQ, where Rob Sleath's permission and the GPL licensing are
+  described — [`digger.txt`](https://github.com/sobomax/digger/blob/master/digger.txt)
+* Digger Remastered's sources, used here as the test oracle —
+  [github.com/sobomax/digger](https://github.com/sobomax/digger)
+* Andrew Jenner's site, with the history of Digger and of Windmill Software —
+  [digger.org](https://digger.org)
+* The original program as preserved —
+  [archive.org/details/msdos_Digger_1983_1983](https://archive.org/details/msdos_Digger_1983_1983)
 
 ## Author
 
