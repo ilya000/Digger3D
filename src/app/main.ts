@@ -36,7 +36,8 @@ const credit = new Credit(canvas("credit"), assets);
 // while the game is on its title screen the 3D window shows the levels in turn
 const attract = new Attract(assets);
 const sound = createSoundEngine();
-const plays = countPlays();
+// the counters live on our own site; where there is no API there is nothing to count
+const plays = countPlays(highScores.shared);
 let fly = params.get("cam") === "fly";
 
 // Browsers start audio only after a gesture.

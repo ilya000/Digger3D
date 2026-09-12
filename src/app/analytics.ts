@@ -11,8 +11,10 @@ export interface Plays {
   gameStarted(): void;
 }
 
-export function countPlays(): Plays {
-  let alive = true;
+/** `hasApi` is false where the game is served without our own backend (the dev
+ *  page, GitHub Pages, a published build): then nothing is sent at all. */
+export function countPlays(hasApi: boolean): Plays {
+  let alive = hasApi;
   const send = (kind: "visit" | "game"): void => {
     if (!alive) return;
     void fetch(API, {
@@ -28,6 +30,6 @@ export function countPlays(): Plays {
         alive = false;
       });
   };
-  send("visit");
+  if (alive) send("visit");
   return { gameStarted: () => send("game") };
 }
