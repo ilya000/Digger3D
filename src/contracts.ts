@@ -84,6 +84,8 @@ export interface FireballState {
 export interface GameView {
   readonly frame: number;
   readonly inLevel: boolean;
+  /** A game is being played (from the title screen to game over). */
+  readonly inGame: boolean;
   readonly level: number;
   /** Which of the 8 level maps this level uses (the earth tile follows it). */
   readonly levelPlan: number;

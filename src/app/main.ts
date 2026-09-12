@@ -8,6 +8,7 @@ import { createGame } from "../core";
 import { createSoundEngine } from "../sound";
 import { originalArt } from "../view3d/originalArt";
 import { View3D } from "../view3d/View3D";
+import { countPlays } from "./analytics";
 import { Attract } from "./attract";
 import { Credit } from "./credit";
 import { createHighScores } from "./highScores";
@@ -35,6 +36,7 @@ const credit = new Credit(canvas("credit"), assets);
 // while the game is on its title screen the 3D window shows the levels in turn
 const attract = new Attract(assets);
 const sound = createSoundEngine();
+const plays = countPlays();
 let fly = params.get("cam") === "fly";
 
 // Browsers start audio only after a gesture.
@@ -80,8 +82,13 @@ function syncArt(view: GameView): void {
   view3d.setArt(`${plan}:${palette.map((c) => c.join(",")).join("/")}`, () => originalArt(palette, plan));
 }
 
+let wasInGame = false;
 function feed(): void {
   const view = shownView();
+  if (game.view.inGame !== wasInGame) {
+    wasInGame = game.view.inGame;
+    if (wasInGame) plays.gameStarted();
+  }
   syncArt(view);
   // in the flyover the world is shown from outside, never from the cabin
   view3d.flyMode = fly ? "wide" : "close";

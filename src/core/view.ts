@@ -29,6 +29,7 @@ export class ViewBuilder {
     this.view = {
       frame: 0,
       inLevel: false,
+      inGame: false,
       level: 1,
       levelPlan: 1,
       bonusMode: false,
@@ -56,6 +57,7 @@ export class ViewBuilder {
     this.frame = frame;
     v.frame = frame;
     v.inLevel = w.inGame && w.levelOnScreen;
+    v.inGame = w.inGame;
     v.level = w.level[w.curPlayer];
     v.levelPlan = w.levelPlan();
     v.bonusMode = w.bonusMode;
