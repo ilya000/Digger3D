@@ -159,29 +159,29 @@ export class Slab {
             [uv(u, floorY), uv(u, 0), uv(u + 1, 0), uv(u + 1, floorY)], SHADE_WALL);
       }
     }
-    // outer sides of the slab along the field border
+    // Outer sides of the slab along the field border. They always reach the
+    // surface: a tunnel that runs into the border of the field ends at a wall
+    // of earth, it never opens a hole through the side of the slab (in the 2D
+    // game the field simply ends there and nothing can pass it).
     const x1 = FIELD.x0 + FIELD.w;
     const y1 = FIELD.y0 + FIELD.h;
+    const top = 0;
     for (let v = v0; v < v0 + CHUNK_H; v++) {
       if (u0 === FIELD.x0) {
-        const top = Slab.dug(tunnels, u0, v) ? floorY : 0;
         b.quad([u0, -SLAB_T, v], [u0, top, v], [u0, top, v + 1], [u0, -SLAB_T, v + 1], [-1, 0, 0],
           [uv(v, -SLAB_T), uv(v, top), uv(v + 1, top), uv(v + 1, -SLAB_T)], SHADE_WALL);
       }
       if (u0 + CHUNK_W === x1) {
-        const top = Slab.dug(tunnels, x1 - 1, v) ? floorY : 0;
         b.quad([x1, -SLAB_T, v], [x1, top, v], [x1, top, v + 1], [x1, -SLAB_T, v + 1], [1, 0, 0],
           [uv(v, -SLAB_T), uv(v, top), uv(v + 1, top), uv(v + 1, -SLAB_T)], SHADE_WALL);
       }
     }
     for (let u = u0; u < u0 + CHUNK_W; u++) {
       if (v0 === FIELD.y0) {
-        const top = Slab.dug(tunnels, u, v0) ? floorY : 0;
         b.quad([u, -SLAB_T, v0], [u, top, v0], [u + 1, top, v0], [u + 1, -SLAB_T, v0], [0, 0, -1],
           [uv(u, -SLAB_T), uv(u, top), uv(u + 1, top), uv(u + 1, -SLAB_T)], SHADE_WALL);
       }
       if (v0 + CHUNK_H === y1) {
-        const top = Slab.dug(tunnels, u, y1 - 1) ? floorY : 0;
         b.quad([u, -SLAB_T, y1], [u, top, y1], [u + 1, top, y1], [u + 1, -SLAB_T, y1], [0, 0, 1],
           [uv(u, -SLAB_T), uv(u, top), uv(u + 1, top), uv(u + 1, -SLAB_T)], SHADE_WALL);
       }
