@@ -14,6 +14,7 @@ import { Credit } from "./credit";
 import { createHighScores } from "./highScores";
 import { BrowserKeyboard } from "./input";
 import { Screen2D } from "./screen2d";
+import { touchControls } from "./touch";
 
 const params = new URLSearchParams(location.search);
 /** ?level=n starts the game at level n (the original always starts at 1). */
@@ -38,6 +39,9 @@ const attract = new Attract(assets);
 const sound = createSoundEngine();
 // the counters live on our own site; where there is no API there is nothing to count
 const plays = countPlays(highScores.shared);
+// a phone has no keyboard: the buttons at the bottom drive the same keys
+if (params.get("touch") === "1") document.body.classList.add("touch");
+touchControls(keyboard, document.getElementById("touch") as HTMLElement);
 let fly = params.get("cam") === "fly";
 
 // Browsers start audio only after a gesture.

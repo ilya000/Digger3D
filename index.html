@@ -17,12 +17,27 @@
       </section>
     </main>
     <p id="help">
-      <kbd>any key</kbd> start · <kbd>←</kbd><kbd>↑</kbd><kbd>→</kbd><kbd>↓</kbd> drive and dig ·
-      <kbd>Shift</kbd>/<kbd>Enter</kbd>/<kbd>⌘</kbd>/<kbd>Ctrl</kbd> fire · <kbd>Space</kbd> pause ·
-      <kbd>N</kbd> 1/2 players · <kbd>⌥M</kbd> music · <kbd>⌥S</kbd> sound · <kbd>⌥Q</kbd> quit ·
-      <kbd>+</kbd><kbd>−</kbd> speed · <kbd>⌥C</kbd> camera · drag the 3D window to look around ·
+      <span class="keys"
+        ><kbd>any key</kbd> start · <kbd>←</kbd><kbd>↑</kbd><kbd>→</kbd><kbd>↓</kbd> drive and dig ·
+        <kbd>Shift</kbd>/<kbd>Enter</kbd>/<kbd>⌘</kbd>/<kbd>Ctrl</kbd> fire · <kbd>Space</kbd> pause ·
+        <kbd>N</kbd> 1/2 players · <kbd>⌥M</kbd> music · <kbd>⌥S</kbd> sound · <kbd>⌥Q</kbd> quit ·
+        <kbd>+</kbd><kbd>−</kbd> speed · <kbd>⌥C</kbd> camera · drag the 3D window to look around ·</span
+      >
       <a href="https://github.com/ilya000/Digger3D#readme" target="_blank" rel="noopener">about, credits and licence</a>
     </p>
+    <!-- A phone has no keyboard: these drive the same keys the game reads. -->
+    <div id="touch" aria-hidden="true">
+      <div class="pad">
+        <button type="button" data-key="ArrowUp" style="grid-area: up">▲</button>
+        <button type="button" data-key="ArrowLeft" style="grid-area: left">◀</button>
+        <button type="button" data-key="ArrowRight" style="grid-area: right">▶</button>
+        <button type="button" data-key="ArrowDown" style="grid-area: down">▼</button>
+      </div>
+      <div class="actions">
+        <button type="button" data-key="Space" class="pause">II</button>
+        <button type="button" data-key="F1" class="fire">FIRE</button>
+      </div>
+    </div>
     <script type="module" src="/src/app/main.ts"></script>
   </body>
 </html>

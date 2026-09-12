@@ -105,3 +105,101 @@ body {
   pointer-events: none;
   opacity: 0.85;
 }
+
+/* ------------------------------------------------------------------ touch
+   A phone has no keyboard, so the game grows a set of buttons: the cursor
+   keys as a pad on the left, fire and pause on the right. They appear on
+   anything whose pointer is coarse (a finger), and `?touch=1` forces them
+   on for trying them out with a mouse. */
+#touch {
+  display: none;
+  position: fixed;
+  inset: auto 0 0 0;
+  padding: 0 16px 14px;
+  justify-content: space-between;
+  align-items: flex-end;
+  pointer-events: none;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+@media (pointer: coarse) {
+  #touch {
+    display: flex;
+  }
+  #help .keys {
+    display: none;
+  }
+  /* keep the playfield and the link clear of the buttons */
+  #stage {
+    padding-bottom: 236px;
+  }
+  #help {
+    bottom: 212px;
+  }
+}
+
+body.touch #touch {
+  display: flex;
+}
+
+body.touch #help .keys {
+  display: none;
+}
+
+body.touch #stage {
+  padding-bottom: 236px;
+}
+
+body.touch #help {
+  bottom: 212px;
+}
+
+#touch .pad {
+  display: grid;
+  grid-template-areas: ". up ." "left . right" ". down .";
+  gap: 6px;
+}
+
+#touch .actions {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+#touch button {
+  pointer-events: auto;
+  width: 62px;
+  height: 62px;
+  border: 1px solid #444;
+  border-radius: 12px;
+  background: #1a1a1acc;
+  color: #cfcfcf;
+  font: 20px/1 system-ui, sans-serif;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#touch button.down {
+  background: #3a3a3ae6;
+  color: #fff;
+}
+
+#touch button.fire {
+  width: 86px;
+  height: 86px;
+  border-radius: 43px;
+  font-size: 15px;
+  letter-spacing: 1px;
+  color: #e8c;
+  border-color: #634;
+}
+
+#touch button.pause {
+  align-self: center;
+  width: 54px;
+  height: 54px;
+  font-size: 15px;
+  letter-spacing: 2px;
+}

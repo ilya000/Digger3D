@@ -97,6 +97,16 @@ export class BrowserKeyboard implements InputSource {
     this.down.clear();
   }
 
+  /** A control of the page itself (a touch button) holds a key down. */
+  press(code: string): void {
+    this.down.add(code);
+    this.queue.push(code);
+  }
+
+  release(code: string): void {
+    this.down.delete(code);
+  }
+
   private onDown(e: KeyboardEvent): void {
     if (this.ignore(e)) return;
     const code = translate(e);
