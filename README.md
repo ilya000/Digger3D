@@ -65,6 +65,14 @@ them also has a plain-key or Alt alias.
 
 `npm test` runs everything; `npm run build` type-checks and builds into `dist/`.
 
+The frame-by-frame tests replay games recorded by other people; those recordings
+live in the reference repository, so they need it checked out beside the project
+(it is never modified, and none of its code goes into the game):
+
+```bash
+git clone https://github.com/sobomax/digger vendor/digger
+```
+
 ## Author
 
 **Ilya Osipov** — [ilyaos.com](https://ilyaos.com)
