@@ -54,6 +54,10 @@ const ACTOR_WIDTH = 12; // model thickness across the trench
 const EARTH_TILE = { w: 20, h: 4 };
 /** Slab-local "up" (the surface normal). */
 const UP = new THREE.Vector3(0, 1, 0);
+/** How far the driver may turn his head, and how fast the view comes back. */
+const LOOK_YAW = Math.PI * 0.9;
+const LOOK_PITCH = 0.9;
+const LOOK_RETURN = 0.88;
 /** How far a buried object leans out of the wall of the tunnel beside it, and
  *  the height in the wall it does that at (the driver's eye is at EYE). */
 const WALL_OUT = 5;
@@ -135,6 +139,9 @@ export class View3D {
   private outside = true;
   /** Free look: where the viewer has dragged the camera to. */
   private readonly orbit = { yaw: 0, pitch: 0, distance: 250, manual: false };
+  /** Looking around from the cabin while the mouse is held; it eases back to
+   *  straight ahead as soon as the mouse is let go. */
+  private readonly look = { yaw: 0, pitch: 0 };
   private dragging = false;
   private pointer = { x: 0, y: 0 };
   private readonly start = performance.now();
@@ -179,13 +186,15 @@ export class View3D {
   }
 
   /**
-   * Outside the cabin the world can be turned with the mouse (or a finger):
-   * dragging orbits around the middle of the playfield, the wheel comes closer
-   * and goes away. Inside the cabin the camera belongs to the digger and the
-   * pointer does nothing.
+   * The 3D window answers the mouse (or a finger) everywhere, but differently.
+   * Outside the cabin - the title screen and the flyover - dragging orbits the
+   * playfield and the wheel comes closer or goes away. From inside the cabin
+   * dragging turns the driver's head; letting go eases the view back to
+   * straight ahead, along the way the digger is driving.
    */
   private listenForDragging(): void {
     const canvas = this.canvas;
+    canvas.style.cursor = "grab";
     const stop = (e: PointerEvent): void => {
       if (!this.dragging) return;
       this.dragging = false;
@@ -194,11 +203,10 @@ export class View3D {
       } catch {
         // the pointer was never captured (or is already gone)
       }
-      canvas.style.cursor = this.outside ? "grab" : "";
+      canvas.style.cursor = "grab";
     };
     canvas.addEventListener("pointerdown", (e) => {
-      if (!this.outside) return;
-      this.takeOrbitFromCamera();
+      if (this.outside) this.takeOrbitFromCamera();
       this.dragging = true;
       this.pointer = { x: e.clientX, y: e.clientY };
       try {
@@ -211,9 +219,17 @@ export class View3D {
     });
     canvas.addEventListener("pointermove", (e) => {
       if (!this.dragging) return;
-      this.orbit.yaw -= (e.clientX - this.pointer.x) * 0.008;
-      this.orbit.pitch = clamp(this.orbit.pitch + (e.clientY - this.pointer.y) * 0.006, -1.35, 1.35);
+      const dx = e.clientX - this.pointer.x;
+      const dy = e.clientY - this.pointer.y;
       this.pointer = { x: e.clientX, y: e.clientY };
+      if (this.outside) {
+        this.orbit.yaw -= dx * 0.008;
+        this.orbit.pitch = clamp(this.orbit.pitch + dy * 0.006, -1.35, 1.35);
+      } else {
+        // the driver can look over both shoulders, but not through the machine
+        this.look.yaw = clamp(this.look.yaw - dx * 0.006, -LOOK_YAW, LOOK_YAW);
+        this.look.pitch = clamp(this.look.pitch - dy * 0.005, -LOOK_PITCH, LOOK_PITCH);
+      }
     });
     canvas.addEventListener("pointerup", stop);
     canvas.addEventListener("pointercancel", stop);
@@ -603,6 +619,15 @@ export class View3D {
     if (roll !== 0) up.applyAxisAngle(target.clone().sub(eye).normalize(), roll);
     const look = new THREE.Matrix4().lookAt(eye, target, up);
     const want = new THREE.Quaternion().setFromRotationMatrix(look);
+    // the driver's head: held by the mouse, easing back to straight ahead
+    if (!this.dragging) {
+      this.look.yaw *= LOOK_RETURN;
+      this.look.pitch *= LOOK_RETURN;
+      if (Math.abs(this.look.yaw) < 1e-3) this.look.yaw = 0;
+      if (Math.abs(this.look.pitch) < 1e-3) this.look.pitch = 0;
+    }
+    if (this.look.yaw !== 0 || this.look.pitch !== 0)
+      want.multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(this.look.pitch, this.look.yaw, 0, "YXZ")));
     if (!this.camInit) {
       this.camQuat.copy(want);
       this.camInit = true;
@@ -620,7 +645,8 @@ export class View3D {
   private setOutside(outside: boolean): void {
     if (outside === this.outside) return;
     this.outside = outside;
-    this.canvas.style.cursor = outside ? "grab" : "";
+    this.canvas.style.cursor = this.dragging ? "grabbing" : "grab";
+    if (outside) this.look.yaw = this.look.pitch = 0; // the driver's head goes with him
   }
 
   private flyover(): void {
