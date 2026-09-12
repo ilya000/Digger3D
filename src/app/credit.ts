@@ -117,7 +117,7 @@ export class Credit {
   constructor(
     canvas: HTMLCanvasElement,
     assets: AssetBundle,
-    text = "© Ilya Osipov 2026",
+    text = "© IlyaOs 2026",
   ) {
     const cache = new Map<string, Glyph>();
     const glyph = (ch: string): Glyph | null => {
