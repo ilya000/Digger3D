@@ -18,7 +18,7 @@ import { fileURLToPath } from "node:url";
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(HERE, "../..");
 
-const { originalBundle } = await import(resolve(ROOT, "src/assets/fromOriginal.ts"));
+const { originalBundle } = await import(resolve(ROOT, "tools/extract/fromOriginal.ts"));
 const { remasteredAssets: remastered } = await import(resolve(ROOT, "src/assets/fromRemastered.ts"));
 const original = originalBundle();
 

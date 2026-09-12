@@ -10,13 +10,14 @@
 import { describe, expect, it } from "vitest";
 import { existsSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import type { AssetBundle } from "../../src/assets/types";
 import { gameAssets } from "../../src/assets/game";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(HERE, "../..");
 const EXTRACTED = resolve(ROOT, "src/assets/original.ts");
+const BUNDLE = pathToFileURL(resolve(ROOT, "tools/extract/fromOriginal.ts")).href;
 const have = existsSync(EXTRACTED);
 
 /** Every place the two bundles differ, as "path: how many values". */
@@ -62,18 +63,18 @@ function differences(mine: AssetBundle, original: AssetBundle): string[] {
 
 describe.skipIf(!have)("the data we ship is the 1983 data", () => {
   it("comes from the expected file", async () => {
-    const { ORIGINAL_SHA256 } = await import("../../src/assets/original");
+    const { ORIGINAL_SHA256 } = (await import(/* @vite-ignore */ pathToFileURL(EXTRACTED).href)) as { ORIGINAL_SHA256: string };
     const manifest = JSON.parse(readFileSync(resolve(ROOT, "tools/extract/manifest.json"), "utf8"));
     expect(ORIGINAL_SHA256).toBe(manifest.source.sha256);
   });
 
   it("matches the original sprite for sprite, glyph for glyph, pixel for pixel", async () => {
-    const { originalBundle } = await import("../../src/assets/fromOriginal");
+    const { originalBundle } = (await import(/* @vite-ignore */ BUNDLE)) as { originalBundle: () => AssetBundle };
     expect(differences(gameAssets(), originalBundle())).toEqual([]);
   });
 
   it("has the original's level maps and palettes", async () => {
-    const { originalBundle } = await import("../../src/assets/fromOriginal");
+    const { originalBundle } = (await import(/* @vite-ignore */ BUNDLE)) as { originalBundle: () => AssetBundle };
     const original = originalBundle();
     const mine = gameAssets();
     expect(mine.levels).toEqual(original.levels);

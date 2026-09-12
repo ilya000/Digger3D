@@ -67,6 +67,18 @@ body {
   pointer-events: none;
 }
 
+/* the help line ignores the pointer, but its link must not */
+#help a {
+  color: #8aa;
+  pointer-events: auto;
+  text-decoration: none;
+  border-bottom: 1px dotted #566;
+}
+
+#help a:hover {
+  color: #cdd;
+}
+
 #help kbd {
   display: inline-block;
   min-width: 1.4em;

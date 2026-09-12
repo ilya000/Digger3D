@@ -8,7 +8,7 @@
 // in tests/core/scenarios.
 
 import { describe, expect, it } from "vitest";
-import { readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -64,10 +64,13 @@ describe("core reproduces the reference", () => {
     .sort();
   for (const file of scripts) {
     const name = file.replace(/\.txt$/, "");
-    it(name, () => {
-      const text = readFileSync(resolve(SCENARIOS, file), "utf8");
+    const text = readFileSync(resolve(SCENARIOS, file), "utf8");
+    const drf = /^#\s*drf\s+(\S+)/m.exec(text)?.[1];
+    // recorded games live in the reference repository; without it, skip them
+    const missing = drf !== undefined && !existsSync(resolve(ROOT, drf));
+    it.skipIf(missing)(name, () => {
       const script = parseScript(text);
-      const drfPath = /^#\s*drf\s+(\S+)/m.exec(text)?.[1];
+      const drfPath = drf;
       const playback = drfPath ? loadDrf(readFileSync(resolve(ROOT, drfPath), "utf8")) : undefined;
       const run = runScript(script, playback ? { playback } : {}, script.screensAt);
       compare(name, run.lines, run.screens);

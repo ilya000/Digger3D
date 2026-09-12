@@ -1,8 +1,12 @@
-// The core's AssetBundle built from the data extracted from the original DIGGER.COM.
-import type { SpriteImage } from "../contracts.ts";
-import { CGA_PALETTES, decodeCgaSprite, hexBytes } from "./cga.ts";
-import { font as rawFont, levels, sprites, titleRle } from "./original.ts";
-import type { AssetBundle, Glyph, SpriteSet } from "./types.ts";
+// The AssetBundle built from a copy of the original DIGGER.COM, as read by
+// tools/extract. The game does not ship this: it runs on the Digger Remastered
+// data plus src/assets/corrections.ts (src/assets/game.ts). This bundle is what
+// the corrections are generated from and checked against, so it lives with the
+// extractor and outside the sources the game is built from.
+import type { SpriteImage } from "../../src/contracts.ts";
+import { CGA_PALETTES, decodeCgaSprite, hexBytes } from "../../src/assets/cga.ts";
+import { font as rawFont, levels, sprites, titleRle } from "../../src/assets/original.ts";
+import type { AssetBundle, Glyph, SpriteSet } from "../../src/assets/types.ts";
 
 function sprite(ch: number): SpriteImage {
   const s = sprites[ch];
