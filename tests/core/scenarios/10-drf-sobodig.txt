@@ -1,0 +1,5 @@
+# Replay of a recorded game (Digger Remastered .drf): level 1 and 2 played by a
+# human, with bags, gold, monsters and a level change.
+# drf vendor/digger/tests/data/sobodig.drf
+fb 1000,3000
+6000 end

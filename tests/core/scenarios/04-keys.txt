@@ -1,0 +1,26 @@
+# Keys during play: pause and resume, music and sound toggles (which change how
+# long the game waits for the dirge), several special keys in one frame, speed
+# changes (which change the sound clock), initials, a new game left with F10.
+fb 520,1300,2100
+100 tap Space
+420 down ArrowLeft
+480 up ArrowLeft
+500 tap Space
+560 tap KeyX
+600 tap F7
+650 tap NumpadAdd
+700 tap NumpadSubtract
+700 tap NumpadSubtract
+720 down ArrowUp
+760 up ArrowUp
+800 tap F7
+800 tap KeyQ
+850 tap F9
+1000 tap F9
+1300 tap KeyA
+1350 tap KeyB
+1400 tap KeyC
+1700 tap Space
+2100 tap F10
+2150 tap F10
+2500 end

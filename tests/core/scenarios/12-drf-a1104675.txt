@@ -1,0 +1,4 @@
+# Recorded game (1.1M points, Windows version recording): 15,000 time points.
+# drf vendor/digger/tests/data/a1104675.drf
+fb 3000,9000,14000
+15000 end

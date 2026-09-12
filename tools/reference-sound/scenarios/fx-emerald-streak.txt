@@ -1,0 +1,18 @@
+# eight emeralds in a row: click + rising scale note each (as digger.c does)
+seconds 4
+2 start emerald
+2 start emeraldStreak 0
+20 start emerald
+20 start emeraldStreak 1
+38 start emerald
+38 start emeraldStreak 2
+56 start emerald
+56 start emeraldStreak 3
+74 start emerald
+74 start emeraldStreak 4
+92 start emerald
+92 start emeraldStreak 5
+110 start emerald
+110 start emeraldStreak 6
+128 start emerald
+128 start emeraldStreak 7

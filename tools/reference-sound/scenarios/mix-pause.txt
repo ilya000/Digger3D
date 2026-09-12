@@ -1,0 +1,7 @@
+# pause silences and freezes everything
+seconds 5
+0 music main
+50 start fire 0
+100 start pause
+200 stop pause
+250 start gold

@@ -1,0 +1,3 @@
+rate 48000
+seconds 4
+0 music main

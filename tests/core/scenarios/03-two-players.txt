@@ -1,0 +1,14 @@
+# Two-player game (players take turns): mode switch on the title screen,
+# "PLAYER n" flashing, turns passing after each death, both players' levels
+# kept separately, player 1's high score with initials, player 2's game over,
+# back to the title screen.
+fb 400,2000,2600,5000
+50 tap KeyN
+100 tap Space
+600 down ArrowUp
+640 up ArrowUp
+700 tap F1
+2450 tap KeyQ
+2520 tap KeyR
+2600 tap KeyS
+7000 end

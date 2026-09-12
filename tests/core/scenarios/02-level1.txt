@@ -1,0 +1,31 @@
+# One-player game: digging, emeralds, fire, bags, monsters, three deaths, game
+# over, a new high score with initials typed in, and back to the title screen.
+fb 420,1200,1700,2300
+100 tap Space
+420 down ArrowLeft
+470 up ArrowLeft
+470 down ArrowUp
+520 up ArrowUp
+520 down ArrowRight
+560 up ArrowRight
+565 tap F1
+600 down ArrowDown
+660 up ArrowDown
+660 down ArrowLeft
+700 up ArrowLeft
+705 tap F1
+760 down ArrowUp
+860 up ArrowUp
+870 down ArrowRight
+940 up ArrowRight
+960 down ArrowDown
+1040 up ArrowDown
+1050 tap F1
+1100 down ArrowLeft
+1200 up ArrowLeft
+1210 down ArrowUp
+1250 up ArrowUp
+1400 tap KeyA
+1450 tap KeyB
+1500 tap KeyC
+2400 end

@@ -1,0 +1,4 @@
+# starting another tune ends the dirge wait
+seconds 5
+0 music dirge
+200 music main

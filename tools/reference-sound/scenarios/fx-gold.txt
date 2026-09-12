@@ -1,0 +1,2 @@
+seconds 1
+2 start gold

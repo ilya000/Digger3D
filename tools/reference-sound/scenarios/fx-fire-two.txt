@@ -1,0 +1,6 @@
+# two fireballs (two-player mode) share the speaker round-robin
+seconds 3
+2 start fire 0
+9 start fire 1
+60 stop fire 0
+120 start explode 1

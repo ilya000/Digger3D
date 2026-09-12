@@ -1,0 +1,15 @@
+# effects interleave with music tick by tick
+seconds 8
+0 music main
+50 start fire 0
+200 start explode 0
+300 start emerald
+300 start emeraldStreak 0
+318 start emerald
+318 start emeraldStreak 1
+400 start gold
+450 start bagWobble
+520 stop bagWobble
+520 start bagFall
+560 stop bagFall
+560 start bagBreak

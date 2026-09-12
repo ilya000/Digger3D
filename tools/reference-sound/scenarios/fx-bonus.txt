@@ -1,0 +1,3 @@
+seconds 3
+2 start bonus
+200 stop bonus

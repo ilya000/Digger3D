@@ -1,0 +1,11 @@
+# bonus mode: siren, then bonus tune, monsters eaten
+seconds 8
+0 music main
+40 start bonus
+100 music bonus
+100 stop bonus
+200 start eatMonster
+260 start eatMonster
+400 start bonus
+460 stop bonus
+460 music main

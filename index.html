@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Digger 3D</title>
+    <link rel="stylesheet" href="/src/app/style.css" />
+  </head>
+  <body>
+    <main id="stage">
+      <section class="pane pane-2d">
+        <canvas id="screen2d" width="320" height="200" aria-label="Digger — original 2D screen"></canvas>
+      </section>
+      <section class="pane pane-3d">
+        <canvas id="screen3d" aria-label="Digger — view from the cabin"></canvas>
+        <canvas id="credit" aria-hidden="true" hidden></canvas>
+      </section>
+    </main>
+    <p id="help">
+      <kbd>any key</kbd> start · <kbd>←</kbd><kbd>↑</kbd><kbd>→</kbd><kbd>↓</kbd> drive and dig ·
+      <kbd>Shift</kbd>/<kbd>Enter</kbd>/<kbd>⌘</kbd>/<kbd>Ctrl</kbd> fire · <kbd>Space</kbd> pause ·
+      <kbd>N</kbd> 1/2 players · <kbd>⌥M</kbd> music · <kbd>⌥S</kbd> sound · <kbd>⌥Q</kbd> quit ·
+      <kbd>+</kbd><kbd>−</kbd> speed · <kbd>⌥C</kbd> camera · drag the 3D window to look around
+    </p>
+    <script type="module" src="/src/app/main.ts"></script>
+  </body>
+</html>

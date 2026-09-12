@@ -1,0 +1,6 @@
+seconds 4
+0 music bonus
+50 start bagWobble
+60 start bagFall
+100 stop all
+150 music main

@@ -1,0 +1,18 @@
+# Cloudflare Pages project for digger.ilyaos.com.
+# Static build output is dist/ (vite), the shared high-score table lives in D1
+# behind functions/api/scores.js. See DEPLOY.md.
+
+name = "digger-3d"
+compatibility_date = "2026-09-11"
+pages_build_output_dir = "dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "digger_scores"
+database_id = "TO-BE-FILLED"      # `wrangler d1 create digger_scores` prints it
+
+# Preview deployments share the same table; split it off if that ever matters.
+[[env.preview.d1_databases]]
+binding = "DB"
+database_name = "digger_scores"
+database_id = "TO-BE-FILLED"

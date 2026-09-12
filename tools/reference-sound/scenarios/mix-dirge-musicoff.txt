@@ -1,0 +1,5 @@
+# music disabled: the dirge still plays, music stays off afterwards
+seconds 12
+0 enable music 0
+5 music dirge
+700 music main

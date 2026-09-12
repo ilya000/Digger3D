@@ -1,0 +1,5 @@
+# level finished: main tune played, then the jingle (game waits for it)
+seconds 6
+2 music main
+100 music off
+150 start levelDone

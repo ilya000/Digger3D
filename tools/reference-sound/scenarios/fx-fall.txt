@@ -1,0 +1,6 @@
+# fall state (toggle) survives stop/start in the original
+seconds 3
+2 start bagFall
+81 stop bagFall
+100 start bagFall
+131 stop bagFall

@@ -1,0 +1,5 @@
+# A long recorded game (2.2M points): many levels, bonus modes, Hobbins, extra
+# lives, deaths - about 20,000 frames of expert play.
+# drf vendor/digger/tests/data/k2223700.drf
+fb 500,5000,12000,19000
+20000 end

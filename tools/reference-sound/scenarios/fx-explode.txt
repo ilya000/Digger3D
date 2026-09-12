@@ -1,0 +1,4 @@
+# fireball hits something: explosion replaces the fire sound
+seconds 2
+2 start fire 0
+30 start explode 0

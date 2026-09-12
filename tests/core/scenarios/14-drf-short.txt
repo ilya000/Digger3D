@@ -1,0 +1,4 @@
+# Short complete recorded game (Digger Remastered 2019 recording), played to the end.
+# drf vendor/digger/tests/data/muu27700.drf
+fb 1000
+20000 end

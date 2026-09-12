@@ -1,0 +1,4 @@
+# Complete recorded game.
+# drf vendor/digger/tests/data/thevoids.drf
+fb 2000
+30000 end

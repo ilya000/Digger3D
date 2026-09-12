@@ -1,0 +1,3 @@
+# emerald eaten, click only
+seconds 1
+2 start emerald

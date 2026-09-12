@@ -1,0 +1,5 @@
+# digger dies, dirge plays (the game waits for it)
+seconds 10
+0 music main
+100 start diggerDeath
+180 music dirge

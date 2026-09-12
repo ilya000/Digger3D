@@ -1,0 +1,8 @@
+# realistic end of a level
+seconds 10
+0 music main
+400 music off
+420 start bagFall
+440 stop bagFall
+470 stop all
+470 start levelDone

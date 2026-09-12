@@ -1,0 +1,3 @@
+# fireball 0 launched and left alone until its sound runs out
+seconds 8
+2 start fire 0

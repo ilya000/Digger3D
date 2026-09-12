@@ -1,0 +1,9 @@
+seconds 7
+0 music main
+100 enable music 0
+150 start gold
+200 enable music 1
+300 enable sound 0
+310 start oneUp
+400 enable sound 1
+420 start oneUp

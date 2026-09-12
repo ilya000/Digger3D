@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Digger 3D - sound test</title>
+    <style>
+      body { font: 14px/1.4 system-ui, sans-serif; margin: 24px; background: #111; color: #ddd; }
+      h1 { font-size: 18px; margin: 0 0 4px; }
+      h2 { font-size: 14px; margin: 18px 0 6px; color: #9c9; }
+      p { margin: 0 0 12px; color: #999; max-width: 60em; }
+      .row { display: flex; flex-wrap: wrap; gap: 6px; }
+      button { font: inherit; padding: 6px 10px; background: #2a2a2a; color: #eee; border: 1px solid #555; border-radius: 4px; cursor: pointer; }
+      button:hover { border-color: #9c9; }
+      button.on { background: #3b5b3b; border-color: #9c9; }
+      label { margin-right: 14px; }
+      #status { margin-top: 18px; font-family: ui-monospace, monospace; color: #cc9; }
+    </style>
+  </head>
+  <body>
+    <h1>Digger 3D: PC-speaker sound test</h1>
+    <p>
+      Every effect and tune of the original Digger, synthesised as PIT square waves in an
+      AudioWorklet. Loops toggle on/off. The first click unlocks audio.
+    </p>
+
+    <div>
+      <label><input type="checkbox" id="sound" checked /> sound</label>
+      <label><input type="checkbox" id="music" checked /> music</label>
+      <label>output
+        <select id="output">
+          <option value="raw">raw square (default)</option>
+          <option value="sdl-filter">SDL speaker filter</option>
+        </select>
+      </label>
+      <label>volume <input type="range" id="volume" min="0" max="1" step="0.05" value="0.6" /></label>
+    </div>
+
+    <h2>Tunes</h2>
+    <div class="row" id="tunes"></div>
+    <h2>One-shot effects</h2>
+    <div class="row" id="oneshots"></div>
+    <h2>Loops (start / stop)</h2>
+    <div class="row" id="loops"></div>
+    <h2>Jingle and control</h2>
+    <div class="row" id="control"></div>
+
+    <div id="status"></div>
+    <script type="module" src="./sound.ts"></script>
+  </body>
+</html>

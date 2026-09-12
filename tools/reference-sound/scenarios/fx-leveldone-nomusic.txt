@@ -1,0 +1,3 @@
+# reference quirk: before any music ever played the jingle is silent
+seconds 4
+2 start levelDone

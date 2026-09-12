@@ -1,0 +1,1609 @@
+{
+ "source": {
+  "file": "assets/original/Digger83/digger.com",
+  "size": 57856,
+  "sha256": "4585dad618ad6c8fa73edaec2b8ad54096779707988efadd8b1b34df6d48f7c5",
+  "origin": "archive.org/details/msdos_Digger_1983_1983 (Digger_1983_1983.zip)"
+ },
+ "note": "Offsets were located by matching against Digger Remastered's tables (vendor/digger); all data is read from the original file.",
+ "sprites": [
+  {
+   "ch": 0,
+   "sprite": "cgazero60",
+   "mask": "cgaediggermask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 36200,
+   "spriteMatch": "exact",
+   "maskOff": 47257,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 1,
+   "sprite": "cgardigger1",
+   "mask": "cgardigger1mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 47804,
+   "spriteMatch": "exact",
+   "maskOff": 47865,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 2,
+   "sprite": "cgardigger2",
+   "mask": "cgardigger2mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 47682,
+   "spriteMatch": "exact",
+   "maskOff": 47743,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 3,
+   "sprite": "cgardigger3",
+   "mask": "cgardigger3mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 47560,
+   "spriteMatch": "exact",
+   "maskOff": 47621,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 4,
+   "sprite": "cgarxdigger1",
+   "mask": "cgarxdigger1mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 48170,
+   "spriteMatch": "exact",
+   "maskOff": 48231,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 5,
+   "sprite": "cgarxdigger2",
+   "mask": "cgarxdigger2mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 48048,
+   "spriteMatch": "exact",
+   "maskOff": 48109,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 6,
+   "sprite": "cgarxdigger3",
+   "mask": "cgarxdigger3mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 47926,
+   "spriteMatch": "exact",
+   "maskOff": 47987,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 7,
+   "sprite": "cgaudigger1",
+   "mask": "cgaudigger1mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 49328,
+   "spriteMatch": "exact",
+   "maskOff": 49389,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 8,
+   "sprite": "cgaudigger2",
+   "mask": "cgaudigger2mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 49146,
+   "spriteMatch": "exact",
+   "maskOff": 49207,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 9,
+   "sprite": "cgaudigger3",
+   "mask": "cgaudigger3mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 49024,
+   "spriteMatch": "exact",
+   "maskOff": 49085,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 10,
+   "sprite": "cgauxdigger1",
+   "mask": "cgauxdigger1mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 49754,
+   "spriteMatch": "exact",
+   "maskOff": 49815,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 11,
+   "sprite": "cgauxdigger2",
+   "mask": "cgauxdigger2mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 49572,
+   "spriteMatch": "exact",
+   "maskOff": 49633,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 12,
+   "sprite": "cgauxdigger3",
+   "mask": "cgauxdigger3mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 49450,
+   "spriteMatch": "exact",
+   "maskOff": 49511,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 13,
+   "sprite": "cgaldigger1",
+   "mask": "cgaldigger1mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 48536,
+   "spriteMatch": "exact",
+   "maskOff": 48597,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 14,
+   "sprite": "cgaldigger2",
+   "mask": "cgaldigger2mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 48414,
+   "spriteMatch": "exact",
+   "maskOff": 48475,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 15,
+   "sprite": "cgaldigger3",
+   "mask": "cgaldigger3mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 48292,
+   "spriteMatch": "exact",
+   "maskOff": 48353,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 16,
+   "sprite": "cgalxdigger1",
+   "mask": "cgalxdigger1mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 48902,
+   "spriteMatch": "exact",
+   "maskOff": 48963,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 17,
+   "sprite": "cgalxdigger2",
+   "mask": "cgalxdigger2mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 48780,
+   "spriteMatch": "exact",
+   "maskOff": 48841,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 18,
+   "sprite": "cgalxdigger3",
+   "mask": "cgalxdigger3mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 48658,
+   "spriteMatch": "exact",
+   "maskOff": 48719,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 19,
+   "sprite": "cgaddigger1",
+   "mask": "cgaddigger1mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 50120,
+   "spriteMatch": "exact",
+   "maskOff": 50181,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 20,
+   "sprite": "cgaddigger2",
+   "mask": "cgaddigger2mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 49998,
+   "spriteMatch": "exact",
+   "maskOff": 50059,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 21,
+   "sprite": "cgaddigger3",
+   "mask": "cgaddigger3mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 49876,
+   "spriteMatch": "exact",
+   "maskOff": 49937,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 22,
+   "sprite": "cgadxdigger1",
+   "mask": "cgadxdigger1mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 50486,
+   "spriteMatch": "exact",
+   "maskOff": 50547,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 23,
+   "sprite": "cgadxdigger2",
+   "mask": "cgadxdigger2mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 50364,
+   "spriteMatch": "exact",
+   "maskOff": 50425,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 24,
+   "sprite": "cgadxdigger3",
+   "mask": "cgadxdigger3mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 50242,
+   "spriteMatch": "exact",
+   "maskOff": 50303,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 25,
+   "sprite": "cgadiggerd",
+   "mask": "cgadiggerdmask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 51218,
+   "spriteMatch": "exact",
+   "maskOff": 51279,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 26,
+   "sprite": "cgagrave1",
+   "mask": "cgagrave1mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 51096,
+   "spriteMatch": "exact",
+   "maskOff": 51157,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 27,
+   "sprite": "cgagrave2",
+   "mask": "cgagrave2mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 50974,
+   "spriteMatch": "exact",
+   "maskOff": 51035,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 28,
+   "sprite": "cgagrave3",
+   "mask": "cgagrave3mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 50852,
+   "spriteMatch": "exact",
+   "maskOff": 50913,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 29,
+   "sprite": "cgagrave4",
+   "mask": "cgagrave4mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 50730,
+   "spriteMatch": "exact",
+   "maskOff": 50791,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 30,
+   "sprite": "cgagrave5",
+   "mask": "cgagrave5mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 50608,
+   "spriteMatch": "exact",
+   "maskOff": 50669,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 31,
+   "sprite": "cgazero60",
+   "mask": "cgaediggermask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 36200,
+   "spriteMatch": "exact",
+   "maskOff": 47257,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 32,
+   "sprite": "cgarbigger1",
+   "mask": "cgarbigger1mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 47865,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 33,
+   "sprite": "cgarbigger2",
+   "mask": "cgarbigger2mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 47743,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 34,
+   "sprite": "cgarbigger3",
+   "mask": "cgarbigger3mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 47621,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 35,
+   "sprite": "cgarxbigger1",
+   "mask": "cgarxbigger1mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 48231,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 36,
+   "sprite": "cgarxbigger2",
+   "mask": "cgarxbigger2mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 48109,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 37,
+   "sprite": "cgarxbigger3",
+   "mask": "cgarxbigger3mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 47987,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 38,
+   "sprite": "cgaubigger1",
+   "mask": "cgaubigger1mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 49389,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 39,
+   "sprite": "cgaubigger2",
+   "mask": "cgaubigger2mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 49207,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 40,
+   "sprite": "cgaubigger3",
+   "mask": "cgaubigger3mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 49085,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 41,
+   "sprite": "cgauxbigger1",
+   "mask": "cgauxbigger1mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 49815,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 42,
+   "sprite": "cgauxbigger2",
+   "mask": "cgauxbigger2mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 49633,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 43,
+   "sprite": "cgauxbigger3",
+   "mask": "cgauxbigger3mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 49511,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 44,
+   "sprite": "cgalbigger1",
+   "mask": "cgalbigger1mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 48597,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 45,
+   "sprite": "cgalbigger2",
+   "mask": "cgalbigger2mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 48475,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 46,
+   "sprite": "cgalbigger3",
+   "mask": "cgalbigger3mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 48353,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 47,
+   "sprite": "cgalxbigger1",
+   "mask": "cgalxbigger1mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 48963,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 48,
+   "sprite": "cgalxbigger2",
+   "mask": "cgalxbigger2mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 48841,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 49,
+   "sprite": "cgalxbigger3",
+   "mask": "cgalxbigger3mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 48719,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 50,
+   "sprite": "cgadbigger1",
+   "mask": "cgadbigger1mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 50181,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 51,
+   "sprite": "cgadbigger2",
+   "mask": "cgadbigger2mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 50059,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 52,
+   "sprite": "cgadbigger3",
+   "mask": "cgadbigger3mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 49937,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 53,
+   "sprite": "cgadxbigger1",
+   "mask": "cgadxbigger1mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 50547,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 54,
+   "sprite": "cgadxbigger2",
+   "mask": "cgadxbigger2mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 50425,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 55,
+   "sprite": "cgadxbigger3",
+   "mask": "cgadxbigger3mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 50303,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 56,
+   "sprite": "cgabiggerd",
+   "mask": "cgabiggerdmask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 51279,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 57,
+   "sprite": "cgagrave1",
+   "mask": "cgagrave1mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 51096,
+   "spriteMatch": "exact",
+   "maskOff": 51157,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 58,
+   "sprite": "cgagrave2",
+   "mask": "cgagrave2mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 50974,
+   "spriteMatch": "exact",
+   "maskOff": 51035,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 59,
+   "sprite": "cgagrave3",
+   "mask": "cgagrave3mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 50852,
+   "spriteMatch": "exact",
+   "maskOff": 50913,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 60,
+   "sprite": "cgagrave4",
+   "mask": "cgagrave4mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 50730,
+   "spriteMatch": "exact",
+   "maskOff": 50791,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 61,
+   "sprite": "cgagrave5",
+   "mask": "cgagrave5mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 50608,
+   "spriteMatch": "exact",
+   "maskOff": 50669,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 62,
+   "sprite": "cgasbag",
+   "mask": "cgasbagmask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 42566,
+   "spriteMatch": "exact",
+   "maskOff": 42627,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 63,
+   "sprite": "cgarbag",
+   "mask": "cgarbagmask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 42748,
+   "spriteMatch": "exact",
+   "maskOff": 42809,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 64,
+   "sprite": "cgalbag",
+   "mask": "cgalbagmask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 42870,
+   "spriteMatch": "exact",
+   "maskOff": 42931,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 65,
+   "sprite": "cgafbag",
+   "mask": "cgafbagmask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 42992,
+   "spriteMatch": "exact",
+   "maskOff": 43053,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 66,
+   "sprite": "cgagold1",
+   "mask": "cgagold1mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 43114,
+   "spriteMatch": "exact",
+   "maskOff": 43175,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 67,
+   "sprite": "cgagold2",
+   "mask": "cgagold2mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 43236,
+   "spriteMatch": "exact",
+   "maskOff": 43297,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 68,
+   "sprite": "cgagold3",
+   "mask": "cgagold3mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 43358,
+   "spriteMatch": "exact",
+   "maskOff": 43419,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 69,
+   "sprite": "cganobbin1",
+   "mask": "cganobbin1mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 43840,
+   "spriteMatch": "exact",
+   "maskOff": 43901,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 70,
+   "sprite": "cganobbin2",
+   "mask": "cganobbin2mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 43962,
+   "spriteMatch": "exact",
+   "maskOff": 44023,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 71,
+   "sprite": "cganobbin3",
+   "mask": "cganobbin3mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 44084,
+   "spriteMatch": "exact",
+   "maskOff": 44145,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 72,
+   "sprite": "cganobbind",
+   "mask": "cganobbindmask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 44206,
+   "spriteMatch": "exact",
+   "maskOff": 44267,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 73,
+   "sprite": "cgarhobbin1",
+   "mask": "cgarhobbin1mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 44388,
+   "spriteMatch": "exact",
+   "maskOff": 44449,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 74,
+   "sprite": "cgarhobbin2",
+   "mask": "cgarhobbin2mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 44570,
+   "spriteMatch": "exact",
+   "maskOff": 44631,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 75,
+   "sprite": "cgarhobbin3",
+   "mask": "cgarhobbin3mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 44752,
+   "spriteMatch": "exact",
+   "maskOff": 44813,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 76,
+   "sprite": "cgarhobbind",
+   "mask": "cgarhobbindmask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 44934,
+   "spriteMatch": "exact",
+   "maskOff": 44995,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 77,
+   "sprite": "cgalhobbin1",
+   "mask": "cgalhobbin1mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 45116,
+   "spriteMatch": "exact",
+   "maskOff": 45177,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 78,
+   "sprite": "cgalhobbin2",
+   "mask": "cgalhobbin2mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 45298,
+   "spriteMatch": "exact",
+   "maskOff": 45359,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 79,
+   "sprite": "cgalhobbin3",
+   "mask": "cgalhobbin3mask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 45480,
+   "spriteMatch": "exact",
+   "maskOff": 45541,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 80,
+   "sprite": "cgalhobbind",
+   "mask": "cgalhobbindmask",
+   "w": 4,
+   "h": 14,
+   "spriteOff": 45662,
+   "spriteMatch": "exact",
+   "maskOff": 45719,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 81,
+   "sprite": "cgabonus",
+   "mask": "cgaediggermask",
+   "w": 4,
+   "h": 15,
+   "spriteOff": 47196,
+   "spriteMatch": "exact",
+   "maskOff": 47257,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 82,
+   "sprite": "cgafire1",
+   "mask": "cgafire1mask",
+   "w": 2,
+   "h": 8,
+   "spriteOff": 47002,
+   "spriteMatch": "prefix-15",
+   "maskOff": 47017,
+   "maskMatch": "prefix-14"
+  },
+  {
+   "ch": 83,
+   "sprite": "cgafire2",
+   "mask": "cgafire2mask",
+   "w": 2,
+   "h": 8,
+   "spriteOff": 47046,
+   "spriteMatch": "prefix-15",
+   "maskOff": 47061,
+   "maskMatch": "prefix-14"
+  },
+  {
+   "ch": 84,
+   "sprite": "cgafire3",
+   "mask": "cgafire3mask",
+   "w": 2,
+   "h": 8,
+   "spriteOff": 47076,
+   "spriteMatch": "prefix-15",
+   "maskOff": 47017,
+   "maskMatch": "prefix-14"
+  },
+  {
+   "ch": 85,
+   "sprite": "cgaexp1",
+   "mask": "cgaexp1mask",
+   "w": 2,
+   "h": 8,
+   "spriteOff": 47106,
+   "spriteMatch": "prefix-15",
+   "maskOff": 47121,
+   "maskMatch": "prefix-14"
+  },
+  {
+   "ch": 86,
+   "sprite": "cgaexp2",
+   "mask": "cgaexp2mask",
+   "w": 2,
+   "h": 8,
+   "spriteOff": 47136,
+   "spriteMatch": "prefix-15",
+   "maskOff": 47151,
+   "maskMatch": "prefix-14"
+  },
+  {
+   "ch": 87,
+   "sprite": "cgaexp3",
+   "mask": "cgaexp3mask",
+   "w": 2,
+   "h": 8,
+   "spriteOff": 47166,
+   "spriteMatch": "prefix-15",
+   "maskOff": 47181,
+   "maskMatch": "prefix-14"
+  },
+  {
+   "ch": 88,
+   "sprite": "cgafire1",
+   "mask": "cgafire1mask",
+   "w": 2,
+   "h": 8,
+   "spriteOff": 47002,
+   "spriteMatch": "prefix-15",
+   "maskOff": 47017,
+   "maskMatch": "prefix-14"
+  },
+  {
+   "ch": 89,
+   "sprite": "cgafire2",
+   "mask": "cgafire2mask",
+   "w": 2,
+   "h": 8,
+   "spriteOff": 47046,
+   "spriteMatch": "prefix-15",
+   "maskOff": 47061,
+   "maskMatch": "prefix-14"
+  },
+  {
+   "ch": 90,
+   "sprite": "cgafire3",
+   "mask": "cgafire3mask",
+   "w": 2,
+   "h": 8,
+   "spriteOff": 47076,
+   "spriteMatch": "prefix-15",
+   "maskOff": 47017,
+   "maskMatch": "prefix-14"
+  },
+  {
+   "ch": 91,
+   "sprite": "cgaexp1",
+   "mask": "cgaexp1mask",
+   "w": 2,
+   "h": 8,
+   "spriteOff": 47106,
+   "spriteMatch": "prefix-15",
+   "maskOff": 47121,
+   "maskMatch": "prefix-14"
+  },
+  {
+   "ch": 92,
+   "sprite": "cgaexp2",
+   "mask": "cgaexp2mask",
+   "w": 2,
+   "h": 8,
+   "spriteOff": 47136,
+   "spriteMatch": "prefix-15",
+   "maskOff": 47151,
+   "maskMatch": "prefix-14"
+  },
+  {
+   "ch": 93,
+   "sprite": "cgaexp3",
+   "mask": "cgaexp3mask",
+   "w": 2,
+   "h": 8,
+   "spriteOff": 47166,
+   "spriteMatch": "prefix-15",
+   "maskOff": 47181,
+   "maskMatch": "prefix-14"
+  },
+  {
+   "ch": 94,
+   "sprite": "cgaback1",
+   "mask": "cgazero60",
+   "w": 5,
+   "h": 4,
+   "spriteOff": 46666,
+   "spriteMatch": "exact",
+   "maskOff": 36200,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 95,
+   "sprite": "cgaback2",
+   "mask": "cgazero60",
+   "w": 5,
+   "h": 4,
+   "spriteOff": 46708,
+   "spriteMatch": "exact",
+   "maskOff": 36200,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 96,
+   "sprite": "cgaback3",
+   "mask": "cgazero60",
+   "w": 5,
+   "h": 4,
+   "spriteOff": 46750,
+   "spriteMatch": "exact",
+   "maskOff": 36200,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 97,
+   "sprite": "cgaback4",
+   "mask": "cgazero60",
+   "w": 5,
+   "h": 4,
+   "spriteOff": 46792,
+   "spriteMatch": "exact",
+   "maskOff": 36200,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 98,
+   "sprite": "cgaback5",
+   "mask": "cgazero60",
+   "w": 5,
+   "h": 4,
+   "spriteOff": 46834,
+   "spriteMatch": "exact",
+   "maskOff": 36200,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 99,
+   "sprite": "cgaback6",
+   "mask": "cgazero60",
+   "w": 5,
+   "h": 4,
+   "spriteOff": 46876,
+   "spriteMatch": "exact",
+   "maskOff": 36200,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 100,
+   "sprite": "cgaback7",
+   "mask": "cgazero60",
+   "w": 5,
+   "h": 4,
+   "spriteOff": 46918,
+   "spriteMatch": "exact",
+   "maskOff": 36200,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 101,
+   "sprite": "cgaback8",
+   "mask": "cgazero60",
+   "w": 5,
+   "h": 4,
+   "spriteOff": 46960,
+   "spriteMatch": "exact",
+   "maskOff": 36200,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 102,
+   "sprite": "cgazero60",
+   "mask": "cgarightblobmask",
+   "w": 2,
+   "h": 18,
+   "spriteOff": 36200,
+   "spriteMatch": "exact",
+   "maskOff": 46235,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 103,
+   "sprite": "cgazero60",
+   "mask": "cgatopblobmask",
+   "w": 6,
+   "h": 6,
+   "spriteOff": 36200,
+   "spriteMatch": "exact",
+   "maskOff": 46383,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 104,
+   "sprite": "cgazero60",
+   "mask": "cgaleftblobmask",
+   "w": 2,
+   "h": 18,
+   "spriteOff": 36200,
+   "spriteMatch": "exact",
+   "maskOff": 46309,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 105,
+   "sprite": "cgazero60",
+   "mask": "cgabottomblobmask",
+   "w": 6,
+   "h": 6,
+   "spriteOff": 36200,
+   "spriteMatch": "exact",
+   "maskOff": 46457,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 106,
+   "sprite": "cgazero60",
+   "mask": "cgasquareblobmask",
+   "w": 6,
+   "h": 6,
+   "spriteOff": 36200,
+   "spriteMatch": "exact",
+   "maskOff": 46629,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 107,
+   "sprite": "cgazero60",
+   "mask": "cgafurryblobmask",
+   "w": 6,
+   "h": 8,
+   "spriteOff": 36200,
+   "spriteMatch": "exact",
+   "maskOff": 46543,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 108,
+   "sprite": "cgaemerald",
+   "mask": "cgaemeraldmask",
+   "w": 4,
+   "h": 10,
+   "spriteOff": 42068,
+   "spriteMatch": "exact",
+   "maskOff": 42109,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 109,
+   "sprite": "cgazero60",
+   "mask": "cgaemeraldmask",
+   "w": 4,
+   "h": 10,
+   "spriteOff": 36200,
+   "spriteMatch": "exact",
+   "maskOff": 42109,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 110,
+   "sprite": "cgaliferight",
+   "mask": "cgaliferightmask",
+   "w": 4,
+   "h": 12,
+   "spriteOff": 42272,
+   "spriteMatch": "exact",
+   "maskOff": null,
+   "maskMatch": "absent"
+  },
+  {
+   "ch": 111,
+   "sprite": "cgalifeleft",
+   "mask": "cgalifeleftmask",
+   "w": 4,
+   "h": 12,
+   "spriteOff": 42370,
+   "spriteMatch": "exact",
+   "maskOff": null,
+   "maskMatch": "absent"
+  },
+  {
+   "ch": 112,
+   "sprite": "cgazero60",
+   "mask": "cgaelifemask",
+   "w": 4,
+   "h": 12,
+   "spriteOff": 36200,
+   "spriteMatch": "exact",
+   "maskOff": 42517,
+   "maskMatch": "exact"
+  },
+  {
+   "ch": 113,
+   "sprite": "cgaleftlife",
+   "mask": "cgaleftlifemask",
+   "w": 4,
+   "h": 12,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": null,
+   "maskMatch": "absent"
+  },
+  {
+   "ch": 114,
+   "sprite": "cgafire1b",
+   "mask": "cgafire1bmask",
+   "w": 2,
+   "h": 8,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 47017,
+   "maskMatch": "prefix-14"
+  },
+  {
+   "ch": 115,
+   "sprite": "cgafire2b",
+   "mask": "cgafire2bmask",
+   "w": 2,
+   "h": 8,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 47061,
+   "maskMatch": "prefix-14"
+  },
+  {
+   "ch": 116,
+   "sprite": "cgafire3b",
+   "mask": "cgafire3bmask",
+   "w": 2,
+   "h": 8,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 47017,
+   "maskMatch": "prefix-14"
+  },
+  {
+   "ch": 117,
+   "sprite": "cgaexp1b",
+   "mask": "cgaexp1bmask",
+   "w": 2,
+   "h": 8,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 47121,
+   "maskMatch": "prefix-14"
+  },
+  {
+   "ch": 118,
+   "sprite": "cgaexp2b",
+   "mask": "cgaexp2bmask",
+   "w": 2,
+   "h": 8,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 47151,
+   "maskMatch": "prefix-14"
+  },
+  {
+   "ch": 119,
+   "sprite": "cgaexp3b",
+   "mask": "cgaexp3bmask",
+   "w": 2,
+   "h": 8,
+   "spriteOff": null,
+   "spriteMatch": "absent",
+   "maskOff": 47181,
+   "maskMatch": "prefix-14"
+  }
+ ],
+ "font": {
+  "w": 3,
+  "h": 12,
+  "glyphs": [
+   {
+    "glyph": "A",
+    "off": 37928
+   },
+   {
+    "glyph": "B",
+    "off": 37967
+   },
+   {
+    "glyph": "C",
+    "off": 38006
+   },
+   {
+    "glyph": "D",
+    "off": 38045
+   },
+   {
+    "glyph": "E",
+    "off": 38084
+   },
+   {
+    "glyph": "F",
+    "off": 38123
+   },
+   {
+    "glyph": "G",
+    "off": 38162
+   },
+   {
+    "glyph": "H",
+    "off": 38201
+   },
+   {
+    "glyph": "I",
+    "off": 38240
+   },
+   {
+    "glyph": "J",
+    "off": 38279
+   },
+   {
+    "glyph": "K",
+    "off": 38318
+   },
+   {
+    "glyph": "L",
+    "off": 38357
+   },
+   {
+    "glyph": "M",
+    "off": 38396
+   },
+   {
+    "glyph": "N",
+    "off": 38435
+   },
+   {
+    "glyph": "O",
+    "off": 38474
+   },
+   {
+    "glyph": "P",
+    "off": 38513
+   },
+   {
+    "glyph": "Q",
+    "off": 38552
+   },
+   {
+    "glyph": "R",
+    "off": 38591
+   },
+   {
+    "glyph": "S",
+    "off": 38630
+   },
+   {
+    "glyph": "T",
+    "off": 38669
+   },
+   {
+    "glyph": "U",
+    "off": 38708
+   },
+   {
+    "glyph": "V",
+    "off": 38747
+   },
+   {
+    "glyph": "W",
+    "off": 38786
+   },
+   {
+    "glyph": "X",
+    "off": 38825
+   },
+   {
+    "glyph": "Y",
+    "off": 38864
+   },
+   {
+    "glyph": "Z",
+    "off": 38903
+   },
+   {
+    "glyph": "0",
+    "off": 38942
+   },
+   {
+    "glyph": "1",
+    "off": 38981
+   },
+   {
+    "glyph": "2",
+    "off": 39020
+   },
+   {
+    "glyph": "3",
+    "off": 39059
+   },
+   {
+    "glyph": "4",
+    "off": 39098
+   },
+   {
+    "glyph": "5",
+    "off": 39137
+   },
+   {
+    "glyph": "6",
+    "off": 39176
+   },
+   {
+    "glyph": "7",
+    "off": 39215
+   },
+   {
+    "glyph": "8",
+    "off": 39254
+   },
+   {
+    "glyph": "9",
+    "off": 39293
+   },
+   {
+    "glyph": "dot",
+    "off": 39332
+   },
+   {
+    "glyph": "colon",
+    "off": -1
+   },
+   {
+    "glyph": "line",
+    "off": 39371
+   },
+   {
+    "glyph": "space",
+    "off": 36200
+   }
+  ]
+ },
+ "levels": {
+  "off": 55422,
+  "count": 8,
+  "rows": 10,
+  "cols": 15
+ },
+ "tunes": {
+  "bonus": {
+   "off": 54100,
+   "words": 321
+  },
+  "main": {
+   "off": 54742,
+   "words": 291
+  },
+  "dirge": {
+   "off": 55324,
+   "words": 49
+  }
+ },
+ "codeImmediates": {
+  "newLevelJingle": {
+   "offsets": [
+    29290,
+    29298,
+    29306,
+    29314,
+    29322,
+    29330,
+    29338,
+    29346,
+    29354,
+    29362
+   ]
+  },
+  "emeraldFreqs": {
+   "offsets": [
+    30220,
+    30228,
+    30236,
+    30244,
+    30252,
+    30260,
+    30268
+   ]
+  }
+ },
+ "palette": {
+  "initial3D9": "0x20 written at 0x351 after BIOS mode 4"
+ },
+ "texts": [
+  {
+   "off": 36160,
+   "text": "Copyright(C) 1983 Windmill Software Inc."
+  },
+  {
+   "off": 52950,
+   "text": "PLAYER "
+  },
+  {
+   "off": 52963,
+   "text": "NEW HIGH SCORE"
+  },
+  {
+   "off": 52979,
+   "text": "GAME OVER"
+  },
+  {
+   "off": 53025,
+   "text": "HIGH SCORES"
+  },
+  {
+   "off": 53043,
+   "text": "ENTER YOUR"
+  },
+  {
+   "off": 53055,
+   "text": "INITIALS"
+  },
+  {
+   "off": 56712,
+   "text": "D I G G E R"
+  },
+  {
+   "off": 56737,
+   "text": "NOBBIN"
+  },
+  {
+   "off": 56744,
+   "text": "HOBBIN"
+  },
+  {
+   "off": 56751,
+   "text": "DIGGER"
+  },
+  {
+   "off": 56763,
+   "text": "EMERALD"
+  },
+  {
+   "off": 56771,
+   "text": "BONUS"
+  },
+  {
+   "off": 56827,
+   "text": "PRESS ANY KEY"
+  }
+ ],
+ "title": {
+  "lengthWordOff": 39706,
+  "note": "RLE: FE <count(0=256)> <byte>; other bytes literal. Output is CGA video memory: even rows at 0, odd rows at 0x2000, 80 bytes per row."
+ }
+}

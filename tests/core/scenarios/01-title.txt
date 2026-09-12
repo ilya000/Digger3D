@@ -1,0 +1,3 @@
+# Title screen and the attract animation, two full cycles.
+fb 5,300,600
+700 end

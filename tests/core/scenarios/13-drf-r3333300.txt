@@ -1,0 +1,4 @@
+# Recorded game (3.3M points): 15,000 time points.
+# drf vendor/digger/tests/data/r3333300.drf
+fb 7000,14500
+15000 end
