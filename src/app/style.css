@@ -78,7 +78,13 @@ body {
   font: inherit;
 }
 
-/* our copyright line in the corner of the 3D window (see src/app/credit.ts) */
+/* our copyright line in the corner of the 3D window (see src/app/credit.ts).
+   The rule above gives every canvas in a pane `display: block`, which would beat
+   the browser's own `[hidden] { display: none }` - so hiding it is spelled out. */
+#credit[hidden] {
+  display: none;
+}
+
 #credit {
   position: absolute;
   inset: auto 2.5% 3.5% auto;

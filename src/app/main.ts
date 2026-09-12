@@ -94,8 +94,8 @@ function feed(): void {
   // in the flyover the world is shown from outside, never from the cabin
   view3d.flyMode = fly ? "wide" : "close";
   view3d.onGameFrame(view);
-  // our own line in the corner, only while the game shows its title screen
-  credit.update(game.screen.palette, !game.view.inLevel);
+  // our own line in the corner, on the title screen only - never during a game
+  credit.update(game.screen.palette, !game.view.inGame);
 }
 feed();
 
