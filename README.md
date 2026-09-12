@@ -4,6 +4,8 @@ The original **Digger** (Windmill Software, 1983) in a browser — the 2D CGA
 screen exactly as it was, and, next to it, a second window that looks at the
 same game from inside the digger's cabin.
 
+**▶ Play: https://ilya000.github.io/Digger3D/**
+
 Both windows show one simulation: the 3D view only reads the game state, it
 never influences it. Every sprite, colour, level map, sound and tune comes out
 of the original `DIGGER.COM`; the voxel models in the 3D window are generated
