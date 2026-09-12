@@ -1,78 +1,86 @@
-// The data extracted from the original DIGGER.COM must equal what Digger Remastered
-// took from it, apart from the few places where Remastered changed the original.
-import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
+// The data the game ships is the Digger Remastered data with the corrections in
+// src/assets/corrections.ts applied (see docs/ASSETS.md). This checks that the
+// result is the 1983 data exactly, by comparing it with what tools/extract reads
+// out of a copy of DIGGER.COM.
+//
+// That copy is not part of the repository, so these tests run only where it is
+// present: put the original next to `assets/original/Digger83/digger.com` and
+// run `node tools/extract/extract.ts` to produce `src/assets/original.ts`.
+
 import { describe, expect, it } from "vitest";
-import { originalBundle } from "../../src/assets/fromOriginal";
-import { ORIGINAL_SHA256 } from "../../src/assets/original";
-import { standinAssets } from "../../src/assets/standin";
+import { existsSync, readFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import type { AssetBundle } from "../../src/assets/types";
+import { gameAssets } from "../../src/assets/game";
 
-type Tree = Record<string, unknown>;
+const HERE = dirname(fileURLToPath(import.meta.url));
+const ROOT = resolve(HERE, "../..");
+const EXTRACTED = resolve(ROOT, "src/assets/original.ts");
+const have = existsSync(EXTRACTED);
 
-function diffPaths(a: unknown, b: unknown, path: string, out: string[]): void {
-  if (a instanceof Uint8Array || b instanceof Uint8Array) {
-    if (!(a instanceof Uint8Array) || !(b instanceof Uint8Array) || a.length !== b.length) {
-      out.push(`${path} (shape)`);
+/** Every place the two bundles differ, as "path: how many values". */
+function differences(mine: AssetBundle, original: AssetBundle): string[] {
+  const out: string[] = [];
+  const count = (a: ArrayLike<number>, b: ArrayLike<number>): number => {
+    let n = Math.abs(a.length - b.length);
+    for (let i = 0; i < Math.min(a.length, b.length); i++) if (a[i] !== b[i]) n++;
+    return n;
+  };
+  const walk = (a: unknown, b: unknown, path: string): void => {
+    if (a == null || b == null) {
+      if (a !== b) out.push(`${path}: missing on one side`);
       return;
     }
-    for (let i = 0; i < a.length; i++)
-      if (a[i] !== b[i]) {
-        out.push(path);
-        return;
-      }
-    return;
-  }
-  if (a && typeof a === "object" && b && typeof b === "object") {
-    const keys = new Set([...Object.keys(a as Tree), ...Object.keys(b as Tree)]);
-    for (const k of keys) diffPaths((a as Tree)[k], (b as Tree)[k], `${path}.${k}`, out);
-    return;
-  }
-  if (a !== b) out.push(`${path} (${JSON.stringify(a)} vs ${JSON.stringify(b)})`);
+    if (Array.isArray(a)) {
+      a.forEach((v, i) => walk(v, (b as unknown[])[i], `${path}[${i}]`));
+      return;
+    }
+    const img = a as { color?: Uint8Array; opaque?: Uint8Array; pixels?: Uint8Array };
+    const other = b as typeof img;
+    if (img.color && img.opaque) {
+      const n = count(img.color, other.color!) + count(img.opaque, other.opaque!);
+      if (n) out.push(`${path}: ${n}`);
+      return;
+    }
+    if (img.pixels) {
+      const n = count(img.pixels, other.pixels!);
+      if (n) out.push(`${path}: ${n}`);
+      return;
+    }
+    if (typeof a === "object")
+      for (const k of Object.keys(a)) walk((a as Record<string, unknown>)[k], (b as Record<string, unknown>)[k], path ? `${path}.${k}` : k);
+  };
+  walk(mine.sprites, original.sprites, "sprites");
+  const keys = (x: AssetBundle) => Object.keys(x.font).sort().join(",");
+  if (keys(mine) !== keys(original)) out.push(`font: different glyphs (${keys(mine)} / ${keys(original)})`);
+  for (const ch of Object.keys(mine.font)) if (ch in original.font) walk(mine.font[ch], original.font[ch], `font[${JSON.stringify(ch)}]`);
+  const titleDiff = count(mine.title, original.title);
+  if (titleDiff) out.push(`title: ${titleDiff}`);
+  return out;
 }
 
-describe("original DIGGER.COM extraction", () => {
-  const orig = originalBundle();
-
-  it("comes from the expected file", () => {
-    const path = fileURLToPath(new URL("../../tools/extract/manifest.json", import.meta.url));
-    const manifest = JSON.parse(readFileSync(path, "utf8"));
+describe.skipIf(!have)("the data we ship is the 1983 data", () => {
+  it("comes from the expected file", async () => {
+    const { ORIGINAL_SHA256 } = await import("../../src/assets/original");
+    const manifest = JSON.parse(readFileSync(resolve(ROOT, "tools/extract/manifest.json"), "utf8"));
     expect(ORIGINAL_SHA256).toBe(manifest.source.sha256);
   });
 
-  it("levels and palettes match Remastered", () => {
-    expect(orig.levels).toEqual(standinAssets.levels);
-    expect(orig.palettes).toEqual(standinAssets.palettes);
+  it("matches the original sprite for sprite, glyph for glyph, pixel for pixel", async () => {
+    const { originalBundle } = await import("../../src/assets/fromOriginal");
+    expect(differences(gameAssets(), originalBundle())).toEqual([]);
   });
 
-  it("sprites match Remastered except where Remastered changed the original", () => {
-    const diffs: string[] = [];
-    diffPaths(orig.sprites, standinAssets.sprites, "sprites", diffs);
-    // Fireball / explosion frames: the original draws 8x8 from 15-byte blocks, so the
-    // last byte comes from the following mask (a stray pixel Remastered cleaned up).
-    // Spare-life icons: Remastered added masks the original does not have.
-    const expected = /^sprites\.(fireball|explosion)\.\d+\.(color|opaque)$|^sprites\.(life|lifePlayer2|lifeEmpty)\.(color|opaque)$/;
-    expect(diffs.filter((d) => !expected.test(d))).toEqual([]);
+  it("has the original's level maps and palettes", async () => {
+    const { originalBundle } = await import("../../src/assets/fromOriginal");
+    const original = originalBundle();
+    const mine = gameAssets();
+    expect(mine.levels).toEqual(original.levels);
+    expect(mine.palettes).toEqual(original.palettes);
   });
 
-  it("font matches Remastered; the original has no colon", () => {
-    const diffs: string[] = [];
-    diffPaths(orig.font, standinAssets.font, "font", diffs);
-    expect(diffs.filter((d) => !d.startsWith("font.:"))).toEqual([]);
-    expect(orig.font[":"]).toBeUndefined();
-  });
-
-  it("title is the original CGA screen: two boxes and the copyright line", () => {
-    const px = (x: number, y: number) => orig.title[y * 320 + x];
-    // magenta (colour 2) frame: top edge, left edge, middle divider
-    expect(px(100, 18)).toBe(2);
-    expect(px(1, 100)).toBe(2);
-    expect(px(161, 100)).toBe(2);
-    // inside of the boxes is empty
-    expect(px(80, 100)).toBe(0);
-    expect(px(240, 100)).toBe(0);
-    // the "(c) Windmill Software 1983" line at the bottom is drawn in colour 3
-    let white = 0;
-    for (let y = 185; y < 200; y++) for (let x = 0; x < 320; x++) if (px(x, y) === 3) white++;
-    expect(white).toBeGreaterThan(200);
+  it("has no colon, as the original's font has none", () => {
+    expect(gameAssets().font[":"]).toBeUndefined();
   });
 });

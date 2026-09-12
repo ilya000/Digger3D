@@ -6,3 +6,8 @@ vendor/digger/
 *.log
 .secrets/
 .wrangler/
+
+# The 1983 program and what is extracted from it: local only, never published.
+# The game ships the Digger Remastered data plus src/assets/corrections.ts.
+assets/original/
+src/assets/original.ts

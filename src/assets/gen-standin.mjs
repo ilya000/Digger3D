@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-// Builds the TEMPORARY asset stand-in `src/assets/standin.ts` from the Digger
+// Builds the TEMPORARY asset stand-in `src/assets/fromRemastered.ts` from the Digger
 // Remastered data in vendor/digger (cgagrafx.c, alpha.c, title_gz.c, game.c).
 // That data was itself taken from the original 1983 program, so the extracted
 // bundle (`src/assets/original.ts`) must come out identical to it.
 //
-//   node src/assets/gen-standin.mjs            regenerate standin.ts (+ the CGA title
+//   node src/assets/gen-standin.mjs            regenerate fromRemastered.ts (+ the CGA title
 //                                              used by tools/reference)
 //   node src/assets/gen-standin.mjs --check [src/assets/original.ts]
 //                                              compare an extracted bundle with the
@@ -213,7 +213,7 @@ function canonical(value, path = "", out = new Map()) {
   return out;
 }
 
-// ---------------------------------------------------------------- emitting standin.ts
+// ---------------------------------------------------------------- emitting fromRemastered.ts
 
 function pack2bpp(px) {
   const out = new Uint8Array(Math.ceil(px.length / 4));
@@ -286,7 +286,7 @@ function px(n: number, data: string): Uint8Array {
 
 const palettes: { normal: [Palette, Palette]; intense: [Palette, Palette] } = ${JSON.stringify(palettes)};
 
-export const standinAssets: AssetBundle = {
+export const remasteredAssets: AssetBundle = {
   palettes,
   ${Object.entries(rest).map(([k, v]) => `${k}: ${emitValue(v, 1)},`).join("\n  ")}
 };
@@ -318,11 +318,11 @@ async function main() {
     console.log(bad === 0 ? "OK: extracted bundle matches the Remastered data" : `${bad} mismatches`);
     process.exit(bad === 0 ? 0 : 1);
   }
-  writeFileSync(resolve(HERE, "standin.ts"), emitStandin(bundle));
+  writeFileSync(resolve(HERE, "fromRemastered.ts"), emitStandin(bundle));
   const refData = resolve(ROOT, "tools/reference/data");
   mkdirSync(refData, { recursive: true });
   writeFileSync(resolve(refData, "title_cga.bin"), bundle.title);
-  console.log("wrote src/assets/standin.ts and tools/reference/data/title_cga.bin");
+  console.log("wrote src/assets/fromRemastered.ts and tools/reference/data/title_cga.bin");
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) await main();

@@ -2,7 +2,7 @@
 // CGA screen and offers the same state to the 3D window (src/view3d). The page
 // owns real time, the keyboard and the audio.
 import { CGA_PALETTES } from "../assets/cga";
-import { originalBundle } from "../assets/fromOriginal";
+import { gameAssets } from "../assets/game";
 import type { GameView, Palette } from "../contracts";
 import { createGame } from "../core";
 import { createSoundEngine } from "../sound";
@@ -23,7 +23,7 @@ const isCameraKey = (e: KeyboardEvent): boolean => e.code === "F2" || (e.altKey 
 
 const canvas = (id: string): HTMLCanvasElement => document.getElementById(id) as HTMLCanvasElement;
 
-const assets = originalBundle();
+const assets = gameAssets();
 // the high-score table is the shared one where our own site serves it, and the
 // browser's own where it does not (see highScores.ts); it must be there before
 // the game reads it, so the page waits for it
@@ -80,7 +80,7 @@ function syncArt(view: GameView): void {
   if (plan === artPlan && palette === artPalette) return;
   artPlan = plan;
   artPalette = palette;
-  view3d.setArt(`${plan}:${palette.map((c) => c.join(",")).join("/")}`, () => originalArt(palette, plan));
+  view3d.setArt(`${plan}:${palette.map((c) => c.join(",")).join("/")}`, () => originalArt(assets, palette, plan));
 }
 
 let wasInGame = false;

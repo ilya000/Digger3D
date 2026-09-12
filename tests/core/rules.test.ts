@@ -8,11 +8,11 @@
 // same way in the reference sources (scores.c: addscore, main.c: levelplan).
 
 import { describe, expect, it } from "vitest";
-import { standinAssets } from "../../src/assets/standin";
+import { remasteredAssets } from "../../src/assets/fromRemastered";
 import { World } from "../../src/core/world";
 
 function world(players = 1): World {
-  const w = new World(standinAssets, {});
+  const w = new World(remasteredAssets, {});
   w.nPlayers = players;
   w.digger.initLives();
   w.scores.zero();

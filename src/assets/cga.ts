@@ -1,5 +1,5 @@
 // CGA hardware facts and the decoder for the original game's sprite bytes.
-import type { Palette, SpriteImage } from "../contracts";
+import type { Palette, SpriteImage } from "../contracts.ts";
 
 /**
  * The four colours of CGA graphics mode 4 for each palette / intensity combination

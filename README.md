@@ -113,12 +113,23 @@ Remastered sources: they are the documentation of the original's rules and, in
 So this project takes its licence and its descent from Digger Remastered and is
 **GPL-2.0-only** as well (see [`LICENSE`](LICENSE)).
 
-The 1983 program itself was used as the object of study and as the source of its
-own artwork: the sprites, the font, the title picture, the level maps, the tunes
-and the timing values are read straight out of it, so that what you see and hear
-is the 1983 game rather than a redrawing of it. That data belongs to Windmill
-Software; it is not ours to license, and their copyright line stays on the screen
-exactly where the original puts it.
+**The data the game draws and plays comes from Digger Remastered**, under its
+GPL v2: the artwork, the font, the title picture, the level maps and the sound
+tables all live in that source, where Rob Sleath's permission and Andrew Jenner's
+copyright put them. In a few places Remastered differs from the 1983 program it
+was made from — a stray pixel in the six fireball and explosion frames, the masks
+of the two spare-life icons, the title picture (Remastered's own is VGA), and a
+colon the original's font does not have. This project is after the 1983
+behaviour, so those places are corrected back; the GPL is precisely what allows
+that, and **every correction is listed in [docs/ASSETS.md](docs/ASSETS.md)** and
+carried as plain numbers in `src/assets/corrections.ts`.
+
+The 1983 program itself is used only to check the result. `tools/extract` reads a
+copy of `DIGGER.COM` and the assets test compares it with what the game ships:
+sprite for sprite, glyph for glyph, pixel for pixel, with nothing left over. That
+copy of the original is not part of this repository — supply your own if you want
+to run that check. Windmill Software's copyright line stays on the screen exactly
+where the original puts it.
 
 ### Sources
 

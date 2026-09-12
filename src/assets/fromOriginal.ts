@@ -1,8 +1,8 @@
 // The core's AssetBundle built from the data extracted from the original DIGGER.COM.
-import type { SpriteImage } from "../contracts";
-import { CGA_PALETTES, decodeCgaSprite, hexBytes } from "./cga";
-import { font as rawFont, levels, sprites, titleRle } from "./original";
-import type { AssetBundle, Glyph, SpriteSet } from "./types";
+import type { SpriteImage } from "../contracts.ts";
+import { CGA_PALETTES, decodeCgaSprite, hexBytes } from "./cga.ts";
+import { font as rawFont, levels, sprites, titleRle } from "./original.ts";
+import type { AssetBundle, Glyph, SpriteSet } from "./types.ts";
 
 function sprite(ch: number): SpriteImage {
   const s = sprites[ch];

@@ -2,7 +2,7 @@
 
 import type { InputSource } from "../../src/contracts";
 import { createGame, type Game, type GameOptions } from "../../src/core/index";
-import { standinAssets } from "../../src/assets/standin";
+import { remasteredAssets } from "../../src/assets/fromRemastered";
 import { formatLine, packScreen } from "./trace";
 
 export interface ScriptEvent {
@@ -84,7 +84,7 @@ export function runScript(script: Script, opts: GameOptions = {}, screensAt: rea
   const wanted = new Set(screensAt);
   let stop = false;
   let game!: Game;
-  game = createGame(standinAssets, {
+  game = createGame(remasteredAssets, {
     ...opts,
     // the reference draws its title screen in VGA and never switches the CGA
     // palette there; our own title follows the original (see WorldOptions)
