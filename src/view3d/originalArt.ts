@@ -40,7 +40,7 @@ export function spritePixels(ch: number, pal: Palette, opaqueOnly = true): Pixel
 export function originalArt(pal: Palette, levelPlan: number): Art3D {
   return {
     dirt: spritePixels(CH.back0 + levelPlan, pal, false),
-    digger: spritePixels(CH.diggerRight[0], pal),
+    digger: CH.diggerRight.map((c) => spritePixels(c, pal)),
     cabin: CABIN,
     nobbin: CH.nobbin.map((c) => spritePixels(c, pal)),
     nobbinDead: spritePixels(CH.nobbinDead, pal),

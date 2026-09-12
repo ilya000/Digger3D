@@ -8,7 +8,8 @@ import { World } from "./world";
 export interface Art3D {
   /** Background tile of the field (the dirt pattern), repeated across the slab. */
   dirt: PixelArt;
-  digger: PixelArt;
+  /** The digger facing right, its three animation frames. */
+  digger: PixelArt[];
   /** Driver's eye position inside the (right-facing) digger sprite, in sprite pixels. */
   cabin: { x: number; y: number };
   nobbin: PixelArt[];
@@ -38,8 +39,9 @@ interface ArtMeshes {
   fireball: THREE.BufferGeometry;
   bonus: THREE.BufferGeometry;
   grave: THREE.BufferGeometry[];
-  /** The digger's own hood, seen from the driver's seat, and where to put it. */
-  hood: THREE.BufferGeometry;
+  /** The digger's own hood seen from the driver's seat, one per animation
+   *  frame - from inside, that is the scoop opening and closing. */
+  hood: THREE.BufferGeometry[];
   hoodPos: THREE.Vector3;
 }
 
@@ -50,6 +52,12 @@ const EYE = 9;
 const ACTOR_WIDTH = 12; // model thickness across the trench
 /** Every earth tile of the original is 20 x 4 pixels (drawbackg). */
 const EARTH_TILE = { w: 20, h: 4 };
+/** Slab-local "up" (the surface normal). */
+const UP = new THREE.Vector3(0, 1, 0);
+/** Camera elevations between which a monster leans back, and how far it leans. */
+const LEAN_FROM = 0.55;
+const LEAN_TO = 1.15;
+const LEAN_MAX = Math.PI * 0.42;
 
 type Pose = { x: number; y: number; dir: Dir };
 
@@ -249,7 +257,7 @@ export class View3D {
     this.emeralds.geometry = built.emerald;
     this.fireball.geometry = built.fireball;
     this.bonus.geometry = built.bonus;
-    this.hood.geometry = built.hood;
+    this.hood.geometry = built.hood[0];
     this.hood.position.copy(built.hoodPos);
   }
 
@@ -260,19 +268,20 @@ export class View3D {
     const round = (a: PixelArt, maxRadius: number) => voxelizeRound(a, { maxRadius, minRadius: 1 });
     const side = (a: PixelArt) => voxelize(a, { minDepth: 6, maxDepth: ACTOR_WIDTH, depthStep: 3 });
     const cab = art.cabin;
-    const hood: PixelArt = {
-      w: art.digger.w,
-      h: art.digger.h,
-      rgb: art.digger.rgb.map((c, i) => {
-        const x = i % art.digger.w;
-        const y = Math.floor(i / art.digger.w);
+    const hoodOf = (frame: PixelArt): PixelArt => ({
+      w: frame.w,
+      h: frame.h,
+      rgb: frame.rgb.map((c, i) => {
+        const x = i % frame.w;
+        const y = Math.floor(i / frame.w);
         // only what lies below the driver's eye: hood and scoop, never the cabin roof;
         // the sprite's black outline would read as a black patch from inside
         const black = c !== null && c[0] + c[1] + c[2] === 0;
         return y > cab.y + 1 && x > cab.x - 3 && !black ? c : null;
       }),
-    };
-    const eyeModel = new THREE.Vector3(cab.x + 0.5 - art.digger.w / 2, art.digger.h - cab.y - 0.5, 0);
+    });
+    const first = art.digger[0];
+    const eyeModel = new THREE.Vector3(cab.x + 0.5 - first.w / 2, first.h - cab.y - 0.5, 0);
     return {
       dirt: artToTexture(art.dirt),
       nobbin: art.nobbin.map((a) => round(a, ACTOR_WIDTH / 2)),
@@ -288,7 +297,7 @@ export class View3D {
       // the machine is only 16 px long, so from the driver's seat the hood is
       // right under the nose: it is kept narrow and a little lower, enough to
       // frame the view without covering it
-      hood: voxelize(hood, { minDepth: 5, maxDepth: 9, depthStep: 2 }),
+      hood: art.digger.map((f) => voxelize(hoodOf(f), { minDepth: 5, maxDepth: 9, depthStep: 2 })),
       hoodPos: eyeModel.applyEuler(new THREE.Euler(0, Math.PI / 2, 0)).negate().add(new THREE.Vector3(0, -1.5, 0)),
     };
   }
@@ -346,6 +355,18 @@ export class View3D {
     return n ? dug / n : 0;
   }
 
+  /**
+   * How far a face-on model should lean back for the camera that is looking at
+   * it: nothing while the camera is level with it (the cabin), almost flat once
+   * the camera is overhead (the attract screen and the flyover).
+   */
+  private leanToCamera(at: THREE.Vector3): number {
+    const eye = this.slab.inner.worldToLocal(this.camera.position.clone()).sub(at);
+    const elevation = Math.atan2(eye.y, Math.hypot(eye.x, eye.z));
+    const t = clamp01((elevation - LEAN_FROM) / (LEAN_TO - LEAN_FROM));
+    return t * t * (3 - 2 * t) * LEAN_MAX; // smooth, so a moving camera does not snap
+  }
+
   /** Depth offset for an object that sticks out of the earth by a third while buried. */
   private embedHeight(exposure: number, objectHeight: number): number {
     const buried = TRENCH - objectHeight / 3; // top third above the surface
@@ -373,8 +394,19 @@ export class View3D {
       mesh.position.copy(this.floorPoint(p.x, p.y));
       // stand on the floor (slab normal = +Y locally), face along travel
       const fwd = dirVector(m.dir === Dir.None ? Dir.Left : m.dir);
-      mesh.rotation.set(0, Math.atan2(-fwd.z, fwd.x), 0);
-      if (m.nobbin) mesh.rotation.y += Math.PI / 2; // Nobbin sprite is a face: show it head-on
+      const yaw = Math.atan2(-fwd.z, fwd.x) + (m.nobbin ? Math.PI / 2 : 0);
+      mesh.quaternion.setFromAxisAngle(UP, yaw);
+      // A monster is a picture drawn face-on: from the cabin it is seen from
+      // the side and stands upright, but a camera looking down on it would see
+      // only the top of its head. The higher the camera, the further it leans
+      // back, until from straight above the face looks up like the 2D sprite.
+      const lean = this.leanToCamera(mesh.position);
+      if (lean > 0) {
+        const axis = new THREE.Vector3().crossVectors(fwd, UP).normalize();
+        mesh.quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(axis, lean));
+        // leaning turns it about its feet: lift it so it does not sink into the floor
+        mesh.position.y += Math.sin(lean) * SPRITE_H * 0.3;
+      }
     });
     for (let i = view.monsters.length; i < this.monsters.length; i++) this.monsters[i].visible = false;
   }
@@ -482,6 +514,10 @@ export class View3D {
     this.inCabin = true;
     this.setOutside(false);
     this.cockpit.visible = true;
+    // the scoop in front of the driver opens and closes as the machine moves,
+    // in step with the sprite the 2D screen is showing
+    const art = this.art;
+    if (art) this.hood.geometry = art.hood[Math.min(art.hood.length - 1, Math.max(0, d.anim))];
     const fwdLocal = dirVector(d.dir === Dir.None ? Dir.Right : d.dir);
     const eyeLocal = this.floorPoint(p.x, p.y, EYE);
     let targetLocal = eyeLocal.clone().addScaledVector(fwdLocal, 40);

@@ -50,6 +50,8 @@ export interface DiggerState {
   deathTime: number;
   /** Stage of the tombstone rising out of the ground (0..4), -1 while there is none. */
   graveStage: number;
+  /** Animation frame of the digger, 0..2 (the scoop opening and closing). */
+  anim: number;
   canFire: boolean;
 }
 

@@ -94,6 +94,11 @@ export class World {
 
   /** Animation phase of the digger and fireball sprites (per digger). */
   private readonly digAnim = [0, 0];
+  /** The frame the digger is drawn in, 0..2 (for the 3D view). */
+  diggerFrame(n = 0): number {
+    return this.digAnim[n];
+  }
+
   private readonly digAnimStep = [1, 1];
   private readonly fireAnim = [0, 0];
 

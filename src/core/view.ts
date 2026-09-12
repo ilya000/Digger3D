@@ -79,6 +79,7 @@ export class ViewBuilder {
         alive: d.alive,
         deathTime: d.alive ? 0 : d.deathFrames,
         graveStage: graveStage(d),
+        anim: w.diggerFrame(0),
         canFire: d.canFire,
       });
     }
